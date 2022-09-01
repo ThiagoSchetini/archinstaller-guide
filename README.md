@@ -1,70 +1,89 @@
-### ARCH INSTALLER GUIDED GUIDE (OMG!) ###
+ARCH INSTALLER GUIDED GUIDE FOR A WORKSTATION (OMG!) 
+====================================================
 	
-	* REMOVE BEFORE START! all partitions of the destination disk before start! archinstall CAN'T DO IT
-		parted help
-		parted rm ...
-		
-	* CREATE BEFORE START! if you just security erased, create the partition table GPT! archinstall CAN'T DO IT
-		parted mktable GPT
-	
-	* START the installer
-		archinstall
-		
-	* mirror near from you, ex: Brazil
-	
-	* select the "manual mode on disk"
-		create two partitions:
-		fat32/5243kB/513MB
-		Ext4/518MB/100%
-		mount the first to /boot
-		mount the second to /
-		mark the both to be formated
-		review everything at the end (including boot=true on the first one)
-		
-	* choose systemd as boot (modern)
-	
-	* no swap (if 32GB+ RAM)
-	
-	* hostname: the machine name, like (Microcraft or WorkstationX)
-	
-	* password on sudo please!
-	
-	* create an user, like (joao), mark it a superuser (probably)
-	
-	* on selecting profile desktop:
-		use nouveou for OLD NVIDIA graphics! (open source)
-		the prorietary will not work on old cards!
-		
-	* choose pipewire as audio server (modern)
-	
-	* choose kernel linux-zen (+performance, +power, -throughput) 
-		check on: https://liquorix.net/ 
-		
-	* Aditional Packages: firefox
-	
-	* Network: Use NetworkManager
-		
-	* Timezone: America/Sao_Paulo
-	
-	* Optional Repositories: 'multilib'
-	
-	Do it!
-	
-# First if you forgot multilib, enable it manually:
+Find and create your ISO on: `https://archlinux.org/download/`
 
-	Uncoment the multilib session from your pacman (both lines):
-	
-		sudo vim /etc/pacman.conf
-		
-		[multilib]
-		Include = /etc/pacman.d/mirrorlist
+**This reading is for GNOME interface mostly**
 
-# Pacman keys update
+Before start the installer
+--------------------------
+
+Wait for your ISO's image terminal open
+
+Remove all partitions of the destination disk (archinstall can't do it):
+
+	parted
+	print all 
+	select "/dev/nvme0n1 ... or the correct SSD that you will use"
+	print "the partitions"
+	rm 1
+	rm 2
+	...
+		
+Prepare the partition table (archinstall can't do it):
+
+	parted mktable GPT
+	
+Configuring the installer
+------------------------
+
+Start it:
+	
+	archinstall
+	
+Select a mirror near from you, ex: Brazil
+	
+Do yourself the partitions:
+	
+> Create a partition for boot as `Fat32` starts at `5243kB` ends at `513MB`
+> Create another partition for system as `Ext4` starts at `518MB` ends at `100%`
+> Mount the first to `/boot`
+> Mount the second to `/`
+
+Confirm systemd as boot (modern one)
+	
+No swap if you have 32GB+ RAM `let it crash :)`
+	
+Hostname is the machine name, like "WorkstationX"
+	
+Put password on sudo please!
+	
+Create at least one user for you like "joao" and mark it as a superuser
+	
+On selecting profile desktop choose the correct GPU driver like proprietary for most of nvidia cards
+		
+Confirm pipewire as audio server (modern one)
+	
+For most workstations, mark only one kernel `linux-zen` (+performance, +power, -throughput), check on `https://liquorix.net/`
+		
+Put aditional packages like `firefox`
+	
+On Network, choose NetworkManager
+		
+On Timezone choose the right one for you like America/Sao_Paulo
+	
+On Optional Repositories do not forget to mark `multilib` for most workstations
+	
+**Run the installer** and when finish:
+
+	reboot
+	
+After install
+-------------
+	
+If you forgot multilib, enable it manually. Uncoment the multilib session from your pacman, both lines:
+	
+	sudo vim /etc/pacman.conf
+
+	[multilib]
+	Include = /etc/pacman.d/mirrorlist
+
+Pacman keys update
 
 	sudo pacman -Syy
 	sudo pacman-key --refresh-keys
 
-# VIM as default editor
+VIM as default editor
 	
 	su
 	*password
@@ -75,28 +94,25 @@
 	
 	reboot
 
-# Default kernel set
+Set the boot timeout and the default kernel, if you installed two or more:
 
-	read entries on
 	ls /boot/loader/entries
-	get the name of file (non mutable part)
+	*get the name of file (non mutable part)
 
 	sudo vim /boot/loader/loader.conf
 	timeout 3
 	default *_linux-zen*
 	
-# source/devel zen (required to install nvidia drivers)
+Source/devel zen:
 
 	sudo pacman -S linux-zen-headers
-	
-# GIT
+
+GIT:
 
 	sudo pacman -S git
 	mkdir ~/Repositories
-	mkdir ~/Repositories/github
-	mkdir ~/Repositories/gitbucket
 	
-# Pacaur
+Pacaur:
 
 	git clone  https://aur.archlinux.org/auracle-git.git
 	cd auracle-git/
@@ -112,8 +128,9 @@
 	rm -r pacaur
 	rm -r auracle-git
 	
-# Gnome System Tray (to use apps on background like sensors and DSP)
+For gnome, use Gnome System Tray (to use apps on background like discord)
 
+	cd Repository
 	git clone https://aur.archlinux.org/gnome-browser-connector.git
 	cd gnome-browser-connector
 	makepkg -si
@@ -121,7 +138,7 @@
 	now find the Tray Icons Reloaded and install:
 	https://extensions.gnome.org/extension/2890/tray-icons-reloaded/
 
-# Manage an existing extra SSD like a data SSD
+Manage an existing extra SSD like a data SSD, here is my example:
 
 	sudo groupadd data
 	sudo usermod -a -G data $USER
@@ -132,7 +149,8 @@
 	Get the media path on:
 	ls -la /run/media/$USER/
 
-# SSH
+Create one SSH public/private key for your workstation:
+
 	sudo pacman -S xclip
 
 	ssh-keygen -o -a 300 -t ed25519 -f ~/.ssh/id_ed25519 -C "MY-MACHINE"
@@ -140,40 +158,43 @@
 	eval "$(ssh-agent -s)"
 	ssh-add ~/.ssh/id_ed25519
 
+Copy the SSH public key (to memory) to use on external services like github, gitlab:
+
 	xclip -sel clip < ~/.ssh/id_ed25519.pub
 
-# Sensors and System Monitor
+Sensors and System Monitor
 
 	sudo sensors-detect
-	sensors
-	sudo pacman -S psensor
+	**put yes on all of them, no problems**
 	
+	sensors
+	
+	sudo pacman -S psensor
 	sudo pacman -S bashtop
 	sudo pacman -S htop
 	sudo pacman -S powertop
 	
-# Trim auto service (to SSD's and nvme's)
+	**open and config psensor to start on boot**
+	
+Trim auto service check (to SSD's and nvme's):
 
-	*Continuous trim is not recommended by UNIX community
+	**Continuous trim is not recommended by UNIX community**
 	
 	Check if its enabled (you should read *Active: active (waiting)*)
 	systemctl status fstrim.timer
 	
 	If not, enable it:
-
 	sudo systemctl enable fstrim.timer
+	
 	reboot
 	
-# DSP LADSPA Plugin (for audio correction)
+DSP LADSPA Plugin (for audio correction)
 
 	pacaur -S jamesdsp
-	
-	DSP for Windows: https://sourceforge.net/p/equalizerapo/wiki/Documentation/
-	Download on: https://www.roomeqwizard.com/
 
 	Then, download some corrections files like: http://noaudiophile.com/Logitech_z623/Logitech_z623.txt
 		
-# JVM
+JVM
 
 	#sudo pacman -S jdk-openjdk
 	sudo pacman -S jdk17-openjdk
@@ -188,7 +209,7 @@
 	
 	sudo pacman -S intellij-idea-community-edition
 
-# Working and Office
+Working and Office
 	
 	sudo pacman -S exfat-utils
 	sudo pacman -S ntfs-3g
@@ -207,13 +228,13 @@
 	
 	sudo pacman -S steam
 	
-# Spotify (native for linux)
+Spotify (native for linux)
 
 	Sign the key and install:
 	curl -sS https://download.spotify.com/debian/pubkey.gpg | gpg --import -
 	pacaur -S spotify
 	
-# Docker 
+Docker 
 
 	sudo pacman -S docker
 	sudo usermod -aG docker $USER
@@ -227,7 +248,7 @@
 	reboot system
 	docker run -it --rm --gpus all ubuntu nvidia-smi
 
-# .NET 5
+.NET 5
 
 	sudo pacman -S dotnet-sdk
 	sudo pacman -S aspnet-runtime
@@ -239,7 +260,7 @@
 	Security problems:
 	dotnet dev-certs https --trust (*did you read the "A valid HTTPS certificate is already present." message?, great!)
 
-# Visual Studio code, ide for C# (native version):
+Visual Studio code, ide for C# (native version):
 
 	pacaur -S visual-studio-code-bin 
 	open it
@@ -267,24 +288,45 @@ Python3 + Pypy3
 
 	sudo pacman -S pycharm-community-edition
 
-# For dual boot with Windows, OS needs to be adjusted to UTC. On Windows run this command:
+For dual boot with Windows, OS needs to be adjusted to UTC. On Windows run this command:
 
 	reg add "HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\TimeZoneInformation" /v RealTimeIsUniversal /d 1 /t REG_DWORD /f
 	
-# After install checklist
+After install make some clean:
 
 	Clean pacman cache:
 	sudo pacman -Sc
 	
-	List/ Remove Orphans:
+	List Orphans:
 	pacman -Qtdq
-	sudo pacman -R ....
 	
-	Allocated SSD space:
+	Remove the Orphans
+	sudo pacman -R aaa bbb ccc
+	
+	Do it again because there will be more orphans:
+	pacman -Qtdq
+	
+Tips
+----
+	
+Check allocated SSD space:
+
 	df
 	sudo du -h --max-depth=1 /
 	
-# How to add user as superuser on sudoers
+How to rescue the pacman keys fucked up:	
+
+	Check files:
+	ls -la /usr/share/pacman/keyrings
+	ls -la /etc/pacman.d/gnupg
+	ls -la /var/lib/pacman/sync/
+
+	Try:
+	sudo rm -r /etc/pacman.d/gnupg
+	sudo pacman-key --init
+	sudo pacman-key --populate archlinux 
+	
+How to add user as superuser on sudoers
 
 	su
 	*password
@@ -294,7 +336,7 @@ Python3 + Pypy3
 	
 	reboot
 	
-# How to VPN 
+VPN 
 
 	You can add the file.ovpn on Settings/Network or using the terminal:
 
@@ -309,7 +351,7 @@ Python3 + Pypy3
 	hint: Get your Default Route on *Settings/Network/Wired-or-WiFi/settings/Details/Default Route*
 	example: sudo ip route add default via 192.168.15.1
 	
-# How to run script with systemclt (systemd controller). Example:
+How to run script with systemclt (systemd controller). Example:
 	
 	sudo touch /usr/local/sbin/mytask.sh
 	sudo chmod +x /usr/local/sbin/mytask.sh
@@ -335,16 +377,4 @@ Python3 + Pypy3
 	sudo systemctl enable myactivator.service
 	
 	reboot
-
-# How to rescue the pacman keys fucked up:	
-
-	Check files:
-	ls -la /usr/share/pacman/keyrings
-	ls -la /etc/pacman.d/gnupg
-	ls -la /var/lib/pacman/sync/
-
-	Try:
-	sudo rm -r /etc/pacman.d/gnupg
-	sudo pacman-key --init
-	sudo pacman-key --populate archlinux 
 
