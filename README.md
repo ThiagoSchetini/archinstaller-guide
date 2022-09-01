@@ -43,7 +43,7 @@ Configuring the installer
 
 > Mount the second to `/`
 
-4 Confirm systemd as boot (modern one)
+4 Confirm `systemd` as boot (modern one)
 	
 5 No swap if you have 32GB+ RAM `let it crash :)`
 	
@@ -55,15 +55,15 @@ Configuring the installer
 	
 9 On selecting profile desktop choose the correct GPU driver like proprietary for most of nvidia cards
 		
-10 Confirm pipewire as audio server (modern one)
+10 Confirm `pipewire` as audio server (modern one)
 	
-11 For most workstations, mark only one kernel `linux-zen` (+performance, +power, -throughput), check on `https://liquorix.net/`
+11 For most workstations, mark only one kernel `linux-zen` (+performance, +power, -throughput). You can read more about linux-zen kernel improvements on https://liquorix.net/
 		
 12 Put aditional packages like `firefox`
 	
-13 On Network, choose NetworkManager
+13 On Network, choose `NetworkManager`
 		
-14 On Timezone choose the right one for you like America/Sao_Paulo
+14 On Timezone choose the right one for you like `America/Sao_Paulo`
 	
 15 On Optional Repositories do not forget to mark `multilib` for most workstations
 	
@@ -81,12 +81,12 @@ If you forgot multilib, enable it manually. Uncoment the multilib session from y
 	[multilib]
 	Include = /etc/pacman.d/mirrorlist
 
-Pacman keys update
+Pacman keys update:
 
 	sudo pacman -Syy
 	sudo pacman-key --refresh-keys
 
-VIM as default editor
+VIM as default editor:
 	
 	su
 	**password**
@@ -253,7 +253,7 @@ Docker
 	**f you have nvidia GPU, for docker**
 
 	pacaur -S nvidia-container-runtime
-	reboot system
+	reboot
 	docker run -it --rm --gpus all ubuntu nvidia-smi
 
 .NET 5
@@ -303,16 +303,16 @@ Pypy3 (VM with Jit + performance). Create the default venv pypy3 directory, and 
 
 After install make some clean:
 
-	Clean pacman cache:
+	**clean pacman cache**
 	sudo pacman -Sc
 	
-	List Orphans:
+	**list orphans**
 	pacman -Qtdq
 	
-	Remove the Orphans
+	**remove the orphans**
 	sudo pacman -R aaa bbb ccc
 	
-	Do it again because there will be more orphans:
+	**do it again, because there will be more orphans**
 	pacman -Qtdq
 	
 Tips
@@ -321,6 +321,9 @@ Tips
 For dual boot with Windows, OS needs to be adjusted to UTC. On Windows run this command:
 
 	reg add "HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\TimeZoneInformation" /v RealTimeIsUniversal /d 1 /t REG_DWORD /f
+	
+	**natural scroll on windows is good too**
+	Get-ItemProperty HKLM:\SYSTEM\CurrentControlSet\Enum\HID\*\*\Device` Parameters FlipFlopWheel -EA 0 | ForEach-Object { Set-ItemProperty $_.PSPath FlipFlopWheel 1 }
 	
 Check allocated SSD space:
 
