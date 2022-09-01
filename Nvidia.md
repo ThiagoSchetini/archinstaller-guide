@@ -16,7 +16,7 @@
 	*if install runs, it will ask you about register kernel module sources
 	YES
 	
-* IF NVIDIA NO VIDEO BECAUSE OF F*** NEW DRIVER
+# IF NVIDIA NO VIDEO BECAUSE OF F*** NEW DRIVER
 
 	after fresh install, if you have old nvidia and forgot to use nouveou
 	Ctrl+Alt+F3: Opens TTY 3
