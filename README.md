@@ -8,9 +8,11 @@ This reading is for `GNOME` interface mostly.
 Before start the installer
 --------------------------
 
+The recent versions of archinstaller deals with this, but, i found it nice manually doing this cleaning on partitions.
+
 Before boot, wait for your ISO's image terminal open.
 
-Remove all partitions of the destination disk (archinstall can't do it):
+Remove all partitions of the destination disk:
 
 	parted
 	print all 
@@ -20,7 +22,7 @@ Remove all partitions of the destination disk (archinstall can't do it):
 	rm 2
 	...
 		
-Prepare the partition table (archinstall can't do it):
+Prepare the partition table:
 
 	parted mktable GPT
 	
@@ -33,7 +35,7 @@ Configuring the installer
 	
 2 Select a mirror near from you, ex: Brazil
 	
-3 Do yourself the partitions:
+3 Do yourself the partitions (It's good for advanced users, but if you are not, the automatic best efforts would be great):
 	
 > Create a partition for boot as `Fat32` starts at `5243kB` ends at `513MB`
 
@@ -49,7 +51,7 @@ Configuring the installer
 	
 6 Hostname is the machine name, like "WorkstationX"
 	
-7 Put password on sudo please!
+7 Put password on sudo if you want, but there is a potential risk: https://wiki.archlinux.org/title/Sudo#Disable_root_login
 	
 8 Create at least one user for you like "joao" and mark it as a superuser
 	
@@ -85,6 +87,9 @@ Pacman keys update:
 
 	sudo pacman -Syy
 	sudo pacman-key --refresh-keys
+	
+	Hint: If refresh keys takes more than a minute just hit ctrl + c and continue, it likely has still worked.
+	
 
 VIM as default editor:
 	
@@ -307,13 +312,11 @@ After install make some clean:
 	sudo pacman -Sc
 	
 	**list orphans**
-	pacman -Qtdq
+	sudo pacman -Qtdq | xargs -ro pacman -Rs
 	
 	**remove the orphans**
-	sudo pacman -R aaa bbb ccc
-	
-	**do it again, because there will be more orphans**
-	pacman -Qtdq
+	sudo pacman -R aaa bbb ccc ...
+
 	
 Tips
 ----
@@ -330,19 +333,23 @@ Check allocated SSD space:
 	df
 	sudo du -h --max-depth=1 /
 	
-How to rescue the pacman keys fucked up:	
-
-	Check files:
-	ls -la /usr/share/pacman/keyrings
-	ls -la /etc/pacman.d/gnupg
-	ls -la /var/lib/pacman/sync/
-
-	Try:
-	sudo rm -r /etc/pacman.d/gnupg
-	sudo pacman-key --init
-	sudo pacman-key --populate archlinux 
+How to rescue the pacman keys fucked up:
 	
-How to add user as superuser on sudoers
+	killall gpg-agent
+	sudo rm -rf /etc/pacman.d/gnupg
+	pacman-key --init 
+	pacman-key --populate
+	pacman -Sy archlinux-keyring
+
+	And if that fails, do:
+	pacman-key --refresh-keys
+	pacman -Sy archlinux-keyring
+
+
+	Hint: If refresh keys takes more than a minute just hit ctrl + c and continue, it likely has still worked.
+	
+	
+How to add user as superuser on sudoers manually
 
 	su
 	**password**
