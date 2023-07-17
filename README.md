@@ -321,19 +321,19 @@ After install make some clean:
 Tips
 ----
 
-For dual boot with Windows, OS needs to be adjusted to UTC. On Windows run this command:
+Adjust Windows for BOOT with UNIX:
 
 	reg add "HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\TimeZoneInformation" /v RealTimeIsUniversal /d 1 /t REG_DWORD /f
 	
 	**natural scroll on windows is good too**
 	Get-ItemProperty HKLM:\SYSTEM\CurrentControlSet\Enum\HID\*\*\Device` Parameters FlipFlopWheel -EA 0 | ForEach-Object { Set-ItemProperty $_.PSPath FlipFlopWheel 1 }
 	
-Check allocated SSD space:
+SSD space:
 
 	df
 	sudo du -h --max-depth=1 /
 	
-How to rescue the pacman keys fucked up:
+Keyring (pacman keys) fucked up:
 	
 	killall gpg-agent
 	sudo rm -rf /etc/pacman.d/gnupg
@@ -347,6 +347,14 @@ How to rescue the pacman keys fucked up:
 
 
 	Hint: If refresh keys takes more than a minute just hit ctrl + c and continue, it likely has still worked.
+
+Mirrorlist generate and replace:
+
+	**generate and remove all comments "#" on some editor
+ 	https://archlinux.org/mirrorlist/
+
+ 	sudo vim etc/pacman.d.mirrorlist
+  	**shift+v to visual mode, them select all with arrows them "x" to clean**
 	
 	
 How to add user as superuser on sudoers manually
