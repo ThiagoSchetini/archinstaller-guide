@@ -5,10 +5,10 @@ Find and create your ISO on: https://archlinux.org/download/
 
 This reading is for `GNOME` interface mostly.
 
-Before start the installer
---------------------------
+Before start the installer, do a manual partition clean
+-------------------------------------------------------
 
-The recent versions of archinstaller deals with this, but, i found it nice manually doing this cleaning on partitions.
+The recent versions of archinstaller deals with this, but, i found it nice manually doing a cleaning on partitions.
 
 Before boot, wait for your ISO's image terminal open.
 
@@ -27,7 +27,7 @@ Prepare the partition table:
 	parted mktable GPT
 	
 Configuring the installer
-------------------------
+-------------------------
 
 1 Start it:
 	
@@ -51,13 +51,13 @@ Configuring the installer
 	
 6 Hostname is the machine name, like "WorkstationX"
 	
-7 Put password on sudo if you want, but there is a potential risk: https://wiki.archlinux.org/title/Sudo#Disable_root_login
+7 Do NOT use password on sudo, you should create a sudo user. Potential risk: https://wiki.archlinux.org/title/Sudo#Disable_root_login
 	
 8 Create at least one user for you like "joao" and mark it as a superuser
 	
 9 On selecting profile desktop choose the correct GPU driver like proprietary for most of nvidia cards
 		
-10 Confirm `pipewire` as audio server (modern one)
+10 Confirm `pipewire` as audio server (most modern one)
 	
 11 For most workstations, mark only one kernel `linux-zen` (+performance, +power, -throughput). You can read more about linux-zen kernel improvements on https://liquorix.net/
 		
@@ -83,13 +83,9 @@ If you forgot multilib, enable it manually. Uncoment the multilib session from y
 	[multilib]
 	Include = /etc/pacman.d/mirrorlist
 
-Pacman keys update:
+	GOTO Utils.md (on this repository) to Mirrorlist (generate and replace with better and more complete one)
 
-	sudo pacman -Syy
-	sudo pacman-key --refresh-keys
-	
-	Hint: If refresh keys takes more than a minute just hit ctrl + c and continue, it likely has still worked.
-	
+GOTO Utils.md run a packman keys update
 
 VIM as default editor:
 	
@@ -102,14 +98,7 @@ VIM as default editor:
 	
 	reboot
 
-Set the boot timeout and the default kernel, if you installed two or more:
-
-	ls /boot/loader/entries
-	**get the name of file (non mutable part)**
-
-	sudo vim /boot/loader/loader.conf
-	timeout 3
-	default *_linux-zen*
+GOTO Utils.md to set the boot timeout and the default kernel, if you installed two or more!
 	
 Source/devel zen:
 
@@ -136,7 +125,7 @@ Pacaur:
 	rm -r pacaur
 	rm -r auracle-git
 	
-For gnome, use Gnome System Tray (to use apps on background like discord)
+Gnome System Tray (to use apps on background like discord)
 
 	cd Repository
 	git clone https://aur.archlinux.org/gnome-browser-connector.git
@@ -146,29 +135,7 @@ For gnome, use Gnome System Tray (to use apps on background like discord)
 	**now find the Tray Icons Reloaded and install**
 	https://extensions.gnome.org/extension/2890/tray-icons-reloaded/
 
-Manage an existing extra SSD like a data SSD, here is my example:
-
-	sudo groupadd data
-	sudo usermod -a -G data $USER
-	
-	sudo chown -R $USER . .. Books/ Docs/ Music/ 'Photo&Video'/ TODO/ Workstations/
-	sudo chgrp -R data . .. Books/ Docs/ Music/ 'Photo&Video'/ TODO/ Workstations/
-	
-	**get the media path on**
-	ls -la /run/media/$USER/
-
-Create one SSH public/private key for your workstation:
-
-	sudo pacman -S xclip
-
-	ssh-keygen -o -a 300 -t ed25519 -f ~/.ssh/id_ed25519 -C "MY-MACHINE"
-	ls -la ~/.ssh
-	eval "$(ssh-agent -s)"
-	ssh-add ~/.ssh/id_ed25519
-
-Copy the SSH public key (to memory) to use on external services like github, gitlab:
-
-	xclip -sel clip < ~/.ssh/id_ed25519.pub
+GOTO Utils.md to Create one SSH public/private key for your workstation
 
 Sensors and System Monitor
 
@@ -218,7 +185,7 @@ JVM
 	mvn --version
 	
 	sudo pacman -S sbt
-	sbt --version 
+	sbt --version
 	
 	sudo pacman -S intellij-idea-community-edition
 
@@ -254,12 +221,6 @@ Docker
 	sudo systemctl start docker 
 	sudo systemctl enable docker 
 	sudo docker run hello-world 
-
-	**f you have nvidia GPU, for docker**
-
-	pacaur -S nvidia-container-runtime
-	reboot
-	docker run -it --rm --gpus all ubuntu nvidia-smi
 
 .NET 5
 
@@ -306,108 +267,4 @@ Pypy3 (VM with Jit + performance). Create the default venv pypy3 directory, and 
 
 	sudo pacman -S pycharm-community-edition
 
-After install make some clean:
-
-	**clean pacman cache**
-	sudo pacman -Sc
-	
-	**list orphans**
-	sudo pacman -Qtdq | xargs -ro pacman -Rs
-	
-	**remove the orphans**
-	sudo pacman -R aaa bbb ccc ...
-
-	
-Tips
-----
-
-Adjust Windows for BOOT with UNIX:
-
-	reg add "HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\TimeZoneInformation" /v RealTimeIsUniversal /d 1 /t REG_DWORD /f
-	
-	**natural scroll on windows is good too**
-	Get-ItemProperty HKLM:\SYSTEM\CurrentControlSet\Enum\HID\*\*\Device` Parameters FlipFlopWheel -EA 0 | ForEach-Object { Set-ItemProperty $_.PSPath FlipFlopWheel 1 }
-	
-SSD space:
-
-	df
-	sudo du -h --max-depth=1 /
-	
-Keyring (pacman keys) fucked up:
-	
-	killall gpg-agent
-	sudo rm -rf /etc/pacman.d/gnupg
-	pacman-key --init 
-	pacman-key --populate
-	pacman -Sy archlinux-keyring
-
-	And if that fails, do:
-	pacman-key --refresh-keys
-	pacman -Sy archlinux-keyring
-
-
-	Hint: If refresh keys takes more than a minute just hit ctrl + c and continue, it likely has still worked.
-
-Mirrorlist generate and replace:
-
-	**generate and remove all comments "#" on some editor
- 	https://archlinux.org/mirrorlist/
-
- 	sudo vim etc/pacman.d.mirrorlist
-  	**shift+v to visual mode, them select all with arrows them "x" to clean**
-	
-	
-How to add user as superuser on sudoers manually
-
-	su
-	**password**
-	
-	visudo /etc/sudoers
-	
-	**include on it**
-	joao ALL=(ALL) ALL
-	
-	reboot
-	
-VPN. Add the file.ovpn on Settings/Network or use the terminal:
-
-	sudo nmcli connection import type openvpn file /path/to/your.ovpn
-	nmcli connection up <connection-name>
-	nmcli connection show
-
-	**use the default gateway if your VPN host do not have access to external network**
-
-	sudo ip route add default via <default-route-ip>
-	sudo ip route add default via 192.168.15.1
-
-	**get your Default Route on *Settings/Network/Wired-or-WiFi/settings/Details/Default Route**
-
-	
-How to run script with systemclt (systemd controller). Example:
-	
-	sudo touch /usr/local/sbin/mytask.sh
-	sudo chmod +x /usr/local/sbin/mytask.sh
-	
-	**put the the shell script on sh file**
-	sudo vim /usr/local/sbin/mytask.sh
-	
-	sudo touch /etc/systemd/system/myactivator.service
-	sudo chmod +x /etc/systemd/system/myactivator.service
-	
-	sudo vim /etc/systemd/system/myactivator.service
-	
-	**template for the service file**
-	[Unit]
-	Description=My Task
-
-	[Service]
-	ExecStart=/usr/local/sbin/mytask.sh
-
-	[Install]
-	WantedBy=multi.user.target
-	**template ends**
-	
-	sudo systemctl enable myactivator.service
-	
-	reboot
-
+GOTO Utils.md run a pacman CLEAN
