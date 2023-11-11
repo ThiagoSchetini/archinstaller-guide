@@ -1,23 +1,25 @@
 ARCH UTILS
 ====================================================
 	
-# Pacman keys update
+# Archlinux update
 
 	sudo pacman-key --refresh-keys
+ 	pacman -Sy archlinux-keyring
 
-# Basic Update
-
-Syu = Update package list and upgrade all packages afterwards
-
-To do a full update including pacaur:
-	pacaur -Syu --debug
-	
-Only default system:
+  	**Syu = Update package list and upgrade all packages afterwards**
 	sudo pacman -Syu --debug
+   	pacaur -Syu --debug
 
-# Keyring
-
-Keyring (pacman keys) fucked up:
+ 	**clean pacman cache**
+	sudo pacman -Sc
+	
+	**list orphans**
+	sudo pacman -Qtdq | xargs -ro pacman -Rs
+	
+	**remove the orphans**
+	sudo pacman -R aaa bbb ccc ...
+ 
+# Keyring (pacman keys) fucked up recovery:
 	
 	killall gpg-agent
 	sudo rm -rf /etc/pacman.d/gnupg
@@ -29,10 +31,9 @@ Keyring (pacman keys) fucked up:
 	pacman-key --refresh-keys
 	pacman -Sy archlinux-keyring
 
-
 	Hint: If refresh keys takes more than a minute just hit ctrl + c and continue, it likely has still worked.
 
-# Mirrorlist 
+# Mirrorlist Manual Server Add/Remove
 
 Generate and replace (ry to choose more than one country, like yours and EUA):
 
@@ -41,19 +42,6 @@ Generate and replace (ry to choose more than one country, like yours and EUA):
 
  	sudo vim etc/pacman.d.mirrorlist
   	**shift+v to visual mode, them select all with arrows them "x" to clean**	
-
-# pacman dependencies clean
-
-Make some clean:
-
-	**clean pacman cache**
-	sudo pacman -Sc
-	
-	**list orphans**
-	sudo pacman -Qtdq | xargs -ro pacman -Rs
-	
-	**remove the orphans**
-	sudo pacman -R aaa bbb ccc ...
 
 # SSH
 
