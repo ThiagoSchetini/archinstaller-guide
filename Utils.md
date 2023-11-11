@@ -13,10 +13,10 @@ ARCH UTILS
  	**clean pacman cache**
 	sudo pacman -Sc
 	
-	**list orphans**
+	**list orphans + remove (needs sudo su)**
 	sudo pacman -Qtdq | xargs -ro pacman -Rs
 	
-	**remove the orphans**
+	**only remove the orphans**
 	sudo pacman -R aaa bbb ccc ...
  
 # Keyring (pacman keys) fucked up recovery:
