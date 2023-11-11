@@ -4,7 +4,7 @@ ARCH UTILS
 # Archlinux update
 
 	sudo pacman-key --refresh-keys
- 	pacman -Sy archlinux-keyring
+ 	sudo pacman -Sy archlinux-keyring
 
   	**Syu = Update package list and upgrade all packages afterwards**
 	sudo pacman -Syu --debug
