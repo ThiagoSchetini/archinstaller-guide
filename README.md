@@ -210,9 +210,7 @@ Working and Office
 	
 Spotify (native for linux)
 
-	**sign the key and install**
-	curl -sS https://download.spotify.com/debian/pubkey.gpg | gpg --import -
-	pacaur -S spotify
+ 	sudo pacman -S spotify-launcher
 	
 Docker 
 
