@@ -8,7 +8,7 @@ ARCH UTILS
 
   	**Syu = Update package list and upgrade all packages afterwards**
 	sudo pacman -Syu --debug
-   	sudo pacaur -Syu --debug
+   	pacaur -Syu --debug
 
  	**clean pacman cache**
 	sudo pacman -Sc
