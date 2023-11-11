@@ -10,8 +10,9 @@ ARCH UTILS
 	sudo pacman -Syu --debug
    	pacaur -Syu --debug
 
- 	**clean pacman cache**
+ 	**clean pacman + pacaur cache**
 	sudo pacman -Sc
+ 	pacaur -Sc
 	
 	**list orphans + remove (needs sudo su)**
 	sudo pacman -Qtdq | xargs -ro pacman -Rs
