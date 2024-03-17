@@ -186,3 +186,7 @@ Reboot and then:
 openrgb:
 
 	sudo pacman -S openrgb
+
+ Example of terminal usage of openrgb after setting up a device:
+ 
+ 	openrgb --device 0 --mode Direct --brightness 70 -c FF0000 -v
