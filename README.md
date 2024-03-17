@@ -110,18 +110,20 @@ GIT:
 	mkdir ~/Repositories
 	
 Pacaur:
-
+	cd ~/Documents (or somewhere to work then delete)
+ 
 	git clone  https://aur.archlinux.org/auracle-git.git
 	cd auracle-git/
 	makepkg --verifysource -sir
+ 	cd ..
 
 	sudo pacman -S expac jq
 
 	git clone https://aur.archlinux.org/pacaur.git
 	cd pacaur
-	makepkg -si
+	makepkg --verifysource -sir
 
-	cd ~/
+	cd ..
 	rm -r pacaur
 	rm -r auracle-git
 	
