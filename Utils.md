@@ -166,3 +166,23 @@ How to run script with systemclt (systemd controller). Example:
 	sudo systemctl enable myactivator.service
 	
 	reboot
+
+# RGB (openrgb)
+
+Execute:
+
+	sudo lsmod | grep i2c
+	sudo sh -c "echo i2c-dev > /etc/modules-load.d/i2c-dev.conf"
+
+Check:
+
+	cat /etc/modules-load.d/i2c-dev.conf
+	pacman -Qo /usr/include/linux/i2c-dev.h   
+
+Reboot and then:
+
+	sudo modprobe i2c-dev
+
+openrgb:
+
+	sudo pacman -S openrgb
