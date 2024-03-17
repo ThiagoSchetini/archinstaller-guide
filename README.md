@@ -205,7 +205,8 @@ Working and Office
 	pacaur -S audacity (audio editor)
 	pacaur -S kdenlive (video editor)
 	pacaur -S exif (image metadata editor)
-	
+
+	sudo pacman -S openrgb
 	sudo pacman -S steam
 	
 Spotify (native for linux)
