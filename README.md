@@ -113,7 +113,7 @@ Pacaur:
 
 	git clone  https://aur.archlinux.org/auracle-git.git
 	cd auracle-git/
-	makepkg -si
+	makepkg --verifysource -sir
 
 	sudo pacman -S expac jq
 
