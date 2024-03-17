@@ -110,8 +110,9 @@ GIT:
 	sudo pacman -S git
 	mkdir ~/Repositories
 	
-Pacaur:
-	cd ~/Documents (or somewhere to work then delete)
+PACAUR install/refresh:
+	
+ 	cd ~/Documents (or somewhere to work then delete)
  	check base-devel installed (sudo pacman -S base-devel)
  
 	git clone  https://aur.archlinux.org/auracle-git.git
