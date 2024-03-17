@@ -103,6 +103,7 @@ GOTO Utils.md to set the boot timeout and the default kernel, if you installed t
 Source/devel zen:
 
 	sudo pacman -S linux-zen-headers
+ 	sudo pacman -S base-devel
 
 GIT:
 
@@ -111,6 +112,7 @@ GIT:
 	
 Pacaur:
 	cd ~/Documents (or somewhere to work then delete)
+ 	check base-devel installed (sudo pacman -S base-devel)
  
 	git clone  https://aur.archlinux.org/auracle-git.git
 	cd auracle-git/
