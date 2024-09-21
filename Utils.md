@@ -82,7 +82,7 @@ Set the boot timeout and the default kernel, if you installed two or more:
 	timeout 3
 	default *_linux-zen*
 
-# sudo add/remove user
+## sudo add/remove user
 
 How to add user as superuser on sudoers manually
 
@@ -130,7 +130,7 @@ SSD space (check):
 
 
 	
-# VPN
+## VPN
 
 VPN. Add the file.ovpn on Settings/Network or use the terminal:
 
@@ -145,7 +145,7 @@ VPN. Add the file.ovpn on Settings/Network or use the terminal:
 
 	**get your Default Route on *Settings/Network/Wired-or-WiFi/settings/Details/Default Route**
 
-# systemclt scripts run
+## systemclt scripts run
 
 How to run script with systemclt (systemd controller). Example:
 	
@@ -175,7 +175,7 @@ How to run script with systemclt (systemd controller). Example:
 	
 	reboot
 
-# RGB configuration (openrgb)
+## RGB configuration (openrgb)
 
 Execute:
 
