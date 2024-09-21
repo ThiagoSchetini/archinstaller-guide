@@ -1,10 +1,33 @@
 ARCH UTILS
 ====================================================
+
+## Mirrors Update and Keyring update
+
+	**read mirrors, you can update manually**
+	https://archlinux.org/mirrorlist/?ip_version=6
+  	vim /etc/pacman.d/mirrorlist
+
+	sudo pacman -S pacman-contrib
 	
-# Archlinux update
+	**Step 1: Extract and concatenate the mirrorlist entries for US, Paraguay, Brazil, and Worldwide or edit this command to different locations**
+	sudo awk '/^## United States$/{f=1; next}f==0{next}/^$/{exit}{print substr($0, 1);}' /etc/pacman.d/mirrorlist.backup > /tmp/mirrorlist.tmp \
+	&& awk '/^## Paraguay$/{f=1; next}f==0{next}/^$/{exit}{print substr($0, 1);}' /etc/pacman.d/mirrorlist.backup >> /tmp/mirrorlist.tmp \
+	&& awk '/^## Brazil$/{f=1; next}f==0{next}/^$/{exit}{print substr($0, 1);}' /etc/pacman.d/mirrorlist.backup >> /tmp/mirrorlist.tmp \
+	&& awk '/^## Worldwide$/{f=1; next}f==0{next}/^$/{exit}{print substr($0, 1);}' /etc/pacman.d/mirrorlist.backup >> /tmp/mirrorlist.tmp
+	
+	**Step 2: Uncomment all server lines and persist, them update beckup file and change ownership to root**
+	sudo sed -i 's/^#Server/Server/' /tmp/mirrorlist.tmp
+	sudo mv /tmp/mirrorlist.tmp /etc/pacman.d/mirrorlist.backup
+	sudo chown root /etc/pacman.d/mirrorlist.backup
+	sudo chgrp root /etc/pacman.d/mirrorlist.backup
+	
+	**Step 3: Rank -n fastest mirrors. Need 'sudo tee' because root is needed to write:
+	sudo rankmirrors -n 20 /etc/pacman.d/mirrorlist.backup | sudo tee /etc/pacman.d/mirrorlist
 
 	sudo pacman-key --refresh-keys
  	sudo pacman -Sy archlinux-keyring
+
+## Archlinux update
 
   	**Syu = Update package list and upgrade all packages afterwards**
 	sudo pacman -Syu --debug
@@ -20,7 +43,7 @@ ARCH UTILS
 	**only remove the orphans**
 	sudo pacman -R aaa bbb ccc ...
  
-# Keyring (pacman keys) fucked up recovery:
+## Keyring (pacman keys) fucked up recovery:
 	
 	killall gpg-agent
 	sudo rm -rf /etc/pacman.d/gnupg
@@ -34,17 +57,7 @@ ARCH UTILS
 
 	Hint: If refresh keys takes more than a minute just hit ctrl + c and continue, it likely has still worked.
 
-# Mirrorlist Manual Server Add/Remove
-
-Generate and replace (ry to choose more than one country, like yours and EUA):
-
-	**Generate and remove all comments "#" on some editor
- 	https://archlinux.org/mirrorlist/
-
- 	sudo vim etc/pacman.d.mirrorlist
-  	**shift+v to visual mode, them select all with arrows them "x" to clean**	
-
-# SSH
+## SSH Key Generation Basic Example
 
 Create one SSH public/private key for your workstation:
 
@@ -58,7 +71,32 @@ Copy the SSH public key (to memory) to use on external services like github, git
 	sudo pacman -S xclip
 	xclip -sel clip < ~/.ssh/id_ed25519.pub
 
-# SSD & TRIM
+ ## Kernel add/remove entries on boot
+
+Set the boot timeout and the default kernel, if you installed two or more:
+
+	ls /boot/loader/entries
+	**get the name of file (non mutable part)**
+
+	sudo vim /boot/loader/loader.conf
+	timeout 3
+	default *_linux-zen*
+
+# sudo add/remove user
+
+How to add user as superuser on sudoers manually
+
+	su
+	**password**
+	
+	visudo /etc/sudoers
+	
+	**include on it**
+	joao ALL=(ALL) ALL
+	
+	reboot
+
+## SSD & TRIM
 
 Trim auto service check (to SSD's and nvme's):
 
@@ -88,39 +126,9 @@ SSD space (check):
 	df
 	sudo du -h --max-depth=1 /
 
-# Linux with Windows on same hardware
 
-Adjust Windows for BOOT with UNIX:
 
-	reg add "HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\TimeZoneInformation" /v RealTimeIsUniversal /d 1 /t REG_DWORD /f
-	
-	**natural scroll on windows is good too**
-	Get-ItemProperty HKLM:\SYSTEM\CurrentControlSet\Enum\HID\*\*\Device` Parameters FlipFlopWheel -EA 0 | ForEach-Object { Set-ItemProperty $_.PSPath FlipFlopWheel 1 }
 
-# Kernel
-
-Set the boot timeout and the default kernel, if you installed two or more:
-
-	ls /boot/loader/entries
-	**get the name of file (non mutable part)**
-
-	sudo vim /boot/loader/loader.conf
-	timeout 3
-	default *_linux-zen*
-
-# sudo
-
-How to add user as superuser on sudoers manually
-
-	su
-	**password**
-	
-	visudo /etc/sudoers
-	
-	**include on it**
-	joao ALL=(ALL) ALL
-	
-	reboot
 	
 # VPN
 
@@ -137,7 +145,7 @@ VPN. Add the file.ovpn on Settings/Network or use the terminal:
 
 	**get your Default Route on *Settings/Network/Wired-or-WiFi/settings/Details/Default Route**
 
-# Systemd scripts
+# systemclt scripts run
 
 How to run script with systemclt (systemd controller). Example:
 	
@@ -167,7 +175,7 @@ How to run script with systemclt (systemd controller). Example:
 	
 	reboot
 
-# RGB (openrgb)
+# RGB configuration (openrgb)
 
 Execute:
 
@@ -190,3 +198,12 @@ openrgb:
  Example of terminal usage of openrgb after setting up a device:
  
  	openrgb --device 0 --mode Direct --brightness 70 -c FF0000 -v
+
+## Linux with Windows on same hardware (not dual boot)
+
+Adjust Windows for BOOT with UNIX:
+
+	reg add "HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\TimeZoneInformation" /v RealTimeIsUniversal /d 1 /t REG_DWORD /f
+	
+	**natural scroll on windows is good too**
+	Get-ItemProperty HKLM:\SYSTEM\CurrentControlSet\Enum\HID\*\*\Device` Parameters FlipFlopWheel -EA 0 | ForEach-Object { Set-ItemProperty $_.PSPath FlipFlopWheel 1 }
