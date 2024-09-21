@@ -20,7 +20,7 @@ source: https://github.com/bitcoin/bitcoin/blob/v27.1/doc/build-unix.md
 
     python test/functional/test_runner.py --coverage
 
-  ** you can execute a single test **
+You can execute a single test:
   
     python test/functional/example_test.py
 
