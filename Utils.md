@@ -38,7 +38,7 @@ ARCH UTILS
  	pacaur -Sc
 	
 	**list orphans + remove (needs sudo su)**
-	sudo pacman -Qtdq | xargs -ro pacman -Rs
+	sudo pacman -Qtdq | sudo xargs -ro pacman -Rs
 	
 	**only remove the orphans**
 	sudo pacman -R aaa bbb ccc ...
