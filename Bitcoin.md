@@ -18,9 +18,9 @@ source: https://github.com/bitcoin/bitcoin/blob/v27.1/doc/build-unix.md
     **or define core numbers to use**
     make -j16
 
-## Execute all the tests using the framework
+## Execute all the tests using the framework (and all cores from your cpu)
 
-    python test/functional/test_runner.py --coverage
+    python test/functional/test_runner.py -j $(nproc) --coverage
 
 You can execute a single test:
   
