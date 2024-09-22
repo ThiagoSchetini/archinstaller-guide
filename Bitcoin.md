@@ -14,7 +14,9 @@ source: https://github.com/bitcoin/bitcoin/blob/v27.1/doc/build-unix.md
     
     ./configure
     
-    make check
+    make -j$(nproc)
+    **or define core numbers to use**
+    make -j16
 
 ## Execute all the tests using the framework
 
