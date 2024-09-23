@@ -148,13 +148,14 @@ Sensors and System Monitor
 	**put yes on all of them, no problems**
 	
 	sensors
-	
+
+ 	sudo pacman -S libappindicator-gtk3
 	sudo pacman -S psensor
+ 	**open and config psensor to start on boot**
+ 
 	sudo pacman -S bashtop
 	sudo pacman -S htop
 	sudo pacman -S powertop
-	
-	**open and config psensor to start on boot**
 	
 Trim auto service check (to SSD's and nvme's):
 
