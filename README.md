@@ -105,7 +105,6 @@ Source/devel zen:
 	sudo pacman -S linux-zen-headers
  	sudo pacman -S base-devel
   	sudo pacman -S cppcheck
-   	sudo pacman -S automake
 
 GIT:
 
