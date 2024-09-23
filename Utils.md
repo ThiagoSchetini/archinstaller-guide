@@ -3,12 +3,11 @@ ARCH UTILS
 
 ## Mirrors Update and Keyring update
 
-	**read mirrors, you can update manually**
-	https://archlinux.org/mirrorlist/?ip_version=6
-  	vim /etc/pacman.d/mirrorlist
-
 	sudo pacman -S pacman-contrib
-	
+ 
+	**Step 0: Refresh mirrors on a beckup file**
+ 	curl -o /etc/pacman.d/mirrorlist.beckup https://archlinux.org/mirrorlist/all/
+ 
 	**Step 1: Extract and concatenate the mirrorlist entries for US, Paraguay, Brazil, and Worldwide or edit this command to different locations**
 	sudo awk '/^## United States$/{f=1; next}f==0{next}/^$/{exit}{print substr($0, 1);}' /etc/pacman.d/mirrorlist.backup > /tmp/mirrorlist.tmp \
 	&& awk '/^## Paraguay$/{f=1; next}f==0{next}/^$/{exit}{print substr($0, 1);}' /etc/pacman.d/mirrorlist.backup >> /tmp/mirrorlist.tmp \
