@@ -23,6 +23,7 @@ ARCH UTILS
 	**Step 3: Rank -n fastest mirrors. Need 'sudo tee' because root is needed to write:
 	sudo rankmirrors -n 20 /etc/pacman.d/mirrorlist.backup | sudo tee /etc/pacman.d/mirrorlist
 
+	sudo pacman -Syu pacman-mirrorlist
 	sudo pacman-key --refresh-keys
  	sudo pacman -Sy archlinux-keyring
 
