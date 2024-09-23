@@ -6,7 +6,7 @@ ARCH UTILS
 	sudo pacman -S pacman-contrib
  
 	**Step 0: Refresh mirrors on a beckup file**
- 	sudo curl -o /etc/pacman.d/mirrorlist.beckup https://archlinux.org/mirrorlist/all/
+ 	sudo curl -o /etc/pacman.d/mirrorlist.backup https://archlinux.org/mirrorlist/all/
  
 	**Step 1: Extract and concatenate the mirrorlist entries for US, Paraguay, Brazil, and Worldwide or edit this command to different locations**
 	sudo awk '/^## United States$/{f=1; next}f==0{next}/^$/{exit}{print substr($0, 1);}' /etc/pacman.d/mirrorlist.backup > /tmp/mirrorlist.tmp \
