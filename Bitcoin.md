@@ -18,15 +18,15 @@ source: https://github.com/bitcoin/bitcoin/blob/v27.1/doc/build-unix.md
     **or define core numbers to use**
     make -j16
 
-### Execute all the tests using the framework (and all cores from your cpu)
+#### Execute all the tests using the framework (and all cores from your cpu)
 
     python test/functional/test_runner.py -j $(nproc) --coverage
 
-### Or You can execute a single test:
+#### Or You can execute a single test:
   
     python test/functional/example_test.py
 
-### create symbolic link
+#### create symbolic link
 
     sudo ln -s $PWD/src/* /usr/local/bin/
 
@@ -35,7 +35,7 @@ source: https://github.com/bitcoin/bitcoin/blob/v27.1/doc/build-unix.md
     wget https://bitcoincore.org/bin/bitcoin-core-27.1/bitcoin-27.1-x86_64-linux-gnu.tar.gz
     tar -xzvf bitcoin-27.1-x86_64-linux-gnu.tar.gz
 
-### create symbolic link
+#### create symbolic link
 
     sudo ln -s $PWD/bitcoin-27.1/bin/* /usr/local/bin/
 
