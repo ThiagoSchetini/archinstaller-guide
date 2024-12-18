@@ -133,15 +133,10 @@ PACAUR install/refresh:
 	
 Gnome System Tray (to use apps on background like discord)
 
-	cd Repository
-	git clone https://aur.archlinux.org/gnome-browser-connector.git
-	cd gnome-browser-connector
-	makepkg -si
+	sudo pacman -S gnome-browser-connector
 
 	**now find the Tray Icons Reloaded and install**
 	https://extensions.gnome.org/extension/2890/tray-icons-reloaded/
-
-GOTO Utils.md to Create one SSH public/private key for your workstation
 
 Sensors and System Monitor
 
@@ -176,11 +171,17 @@ DSP LADSPA Plugin (for audio correction)
 
 	**Then, download some corrections files like: http://noaudiophile.com/Logitech_z623/Logitech_z623.txt**
 		
-JVM
+Coding JVM + Python
 
-	#sudo pacman -S jdk-openjdk
+	sudo pacman -S jdk-openjdk (last one)
+
+	sudo pacman -S jdk8-openjdk
+ 	sudo pacman -S jdk11-openjdk
 	sudo pacman -S jdk17-openjdk
-	#sudo archlinux-java set java-17-openjdk
+ 	sudo pacman -S jdk21-openjdk
+  	sudo pacman -S jdk23-openjdk
+
+	sudo archlinux-java set java-11-openjdk
 	archlinux-java status
 	
 	sudo pacman -S visualvm
@@ -195,31 +196,9 @@ JVM
 	sbt --version
 	
 	sudo pacman -S intellij-idea-community-edition
+ 	sudo pacman -S pycharm-community-edition
+  	sudo pacman -S vscode
 
-Working and Office
-	
-	sudo pacman -S exfat-utils
-	sudo pacman -S ntfs-3g
-	
-	pacaur -S discord-canary
-	pacaur -S teams
-	pacaur -S zoom
-	pacaur -S slack-desktop
-	
-	pacaur -S freeoffice
-	pacaur -S krita (image editor)
-	pacaur -S rhythmbox (audio player)
-	pacaur -S audacity (audio editor)
-	pacaur -S kdenlive (video editor)
-	pacaur -S exif (image metadata editor)
-
-	sudo pacman -S openrgb
-	sudo pacman -S steam
-	
-Spotify (native for linux)
-
- 	sudo pacman -S spotify-launcher
-	
 Docker 
 
 	sudo pacman -S docker
@@ -228,49 +207,16 @@ Docker
 	sudo systemctl enable docker 
 	sudo docker run hello-world 
 
-.NET 5
-
-	sudo pacman -S dotnet-sdk
-	sudo pacman -S aspnet-runtime
-
-	dotnet --info
+Working, Audio, Images, Video
 	
-	**try autocomplete**
-	dotnet a+TAB 
-	dotnet +TAB 
+	sudo pacman -S exfat-utils
+	sudo pacman -S ntfs-3g
+ 
+	pacaur -S rhythmbox (audio player)
+ 	sudo pacman -S spotify-launcher
+	pacaur -S freeoffice
 
-	**check security problems**
-	dotnet dev-certs https --trust 
-	**did you read the "A valid HTTPS certificate is already present." message?, great!**
-
-Visual Studio code, ide for C# (native version):
-
-	pacaur -S visual-studio-code-bin 
-	
-	**open it, them CTRL+P, them**
-	ext install ms-dotnettools.csharp
-	ext install EditorConfig.EditorConfig
-
-	**best project tutorial MANUAL start ever**
-	https://docs.microsoft.com/en-us/dotnet/core/testing/unit-testing-with-nunit
-
-Python3. Create the default venv python directory, and test it:
-
-	python3 -m venv ~/.venv/python3
-	source ~/.venv/python3/bin/activate
-	pip list
-	deactivate
-	
-	sudo pacman -S pycharm-community-edition
-	
-Pypy3 (VM with Jit + performance). Create the default venv pypy3 directory, and test it:
-
-	sudo pacman -S pypy3
-	pypy3 -m venv ~/.venv/pypy3
-	source ~/.venv/pypy3/bin/activate
-	pip list
-	deactivate
-
-	sudo pacman -S pycharm-community-edition
+ 	sudo pacman -S openrgb
+	sudo pacman -S steam
 
 GOTO Utils.md run a pacman CLEAN
