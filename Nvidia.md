@@ -37,7 +37,7 @@
   	
    	Install nfancurve, if it breaks because "nvidia-settings" use -e:
     	pacaur -S nfancurve -d
-	pacaur -S nfancurve -d -e	
+     	pacaur -S nfancurve -d -e
 	on edit remove the line: 
  		"depends=("bash" "nvidia-utils" "nvidia-settings" "procps")"
 	:wq
