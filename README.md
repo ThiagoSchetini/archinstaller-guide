@@ -150,8 +150,6 @@ Sensors and System Monitor
  	**open and config psensor to start on boot**
  
 	sudo pacman -S bashtop
-	sudo pacman -S htop
-	sudo pacman -S powertop
 	
 Trim auto service check (to SSD's and nvme's):
 
