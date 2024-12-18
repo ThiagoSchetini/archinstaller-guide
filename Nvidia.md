@@ -41,7 +41,7 @@
 		min_t="50"
   		min_t2="50"
     
-		sleep_time="1"
+		sleep_time="3"
   
 		hyst="2"
   
