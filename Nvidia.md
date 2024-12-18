@@ -51,7 +51,7 @@
 		which_curve="1 1 1 1"
   		default_fan="0"
     		fan2gpu="0 0 1 1"
-  	:wq
+      		:wq
 
 	nfancurve -l -c /etc/nfancurve.conf
 
