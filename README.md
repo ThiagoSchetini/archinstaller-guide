@@ -171,7 +171,7 @@ DSP LADSPA Plugin (for audio correction)
 
 	**Then, download some corrections files like: http://noaudiophile.com/Logitech_z623/Logitech_z623.txt**
 		
-Coding JVM + Python
+JVM & Data Engineering Coding
 
 	sudo pacman -S jdk-openjdk (last one)
 
@@ -198,6 +198,7 @@ Coding JVM + Python
 	sudo pacman -S intellij-idea-community-edition
  	sudo pacman -S pycharm-community-edition
   	sudo pacman -S vscode
+   	sudo pacman -S dbeaver
 
 Docker 
 
@@ -211,12 +212,18 @@ Working, Audio, Images, Video
 	
 	sudo pacman -S exfat-utils
 	sudo pacman -S ntfs-3g
- 
+
+ 	sudo pacman -S firefox
+  	pacaur -S google-chrome
+   	pacaur -S freeoffice
+   
 	pacaur -S rhythmbox (audio player)
  	sudo pacman -S spotify-launcher
-	pacaur -S freeoffice
-
+	
  	sudo pacman -S openrgb
 	sudo pacman -S steam
 
-GOTO Utils.md run a pacman CLEAN
+CLEAN
+
+	pacman -Qe (search for not used installed default dependencies carefully)
+	GOTO Utils.md run the pacman clean instructions
