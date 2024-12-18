@@ -39,7 +39,7 @@
     	pacaur -S nfancurve -d
      	pacaur -S nfancurve -d -e
       	*** on edit remove the line: "depends=("bash" "nvidia-utils" "nvidia-settings" "procps")"
-	:wq
+       :wq
   
  	sudo vim /etc/nfancurve.conf (CTRL + SHIFT + V to paste)
 		min_t="50"
