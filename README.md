@@ -138,12 +138,17 @@ Gnome System Tray (to use apps on background like discord)
 	**now find the Tray Icons Reloaded and install**
 	https://extensions.gnome.org/extension/2890/tray-icons-reloaded/
 
-Sensors and System Monitor
+Sensors and System Monitor on Tray
 
 	sudo sensors-detect
 	**put yes on all of them, no problems**
 	
 	sensors
+
+ 	goto: https://extensions.gnome.org/local/
+	+ AppsMenu
+ 	+ AstraMonitor
+  	+ Status Icons
 
  	sudo pacman -S libappindicator-gtk3
 	sudo pacman -S psensor
