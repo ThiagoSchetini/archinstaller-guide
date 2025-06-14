@@ -29,17 +29,16 @@ ARCH UTILS
 
 ## Archlinux update
 
-  	**Syu = Update package list and upgrade all packages afterwards**
-	sudo pacman -Syu --debug
-   	pacaur -Syu --debug
+  	**update only aur packages**
+	yay -Sua --debug
 
  	**clean pacman + pacaur cache**
 	sudo pacman -Sc
- 	pacaur -Sc
+ 	yay -Sc
 	
 	**list orphans + remove (needs sudo su)**
-	sudo pacman -Qtdq | sudo xargs -ro pacman -Rs
-	
+	sudo pacman -Rns $(pacman -Qdtq)
+ 
 	**only remove the orphans**
 	sudo pacman -R aaa bbb ccc ...
  
