@@ -1,31 +1,6 @@
-# NVIDIA proprietary driver manual install 
+# NVIDIA driver install 
 
-	get the file (can download from nvidia website)
-	stop xorg server (infertace): 
-	systemctl stop gdm
-	Ctrl+Alt+F3: Opens TTY 3
-	sudo sh NVIDIA-Linux-driver.run
-
-	*it will tell you that there is a nouveou configured on kernel and will not proceed
-	press OK
-	*then it will say about auto generate and write a .config file on kernel to disable it...
-	Allow it to try and pray!
-	reboot
-	
-	sudo sh NVIDIA-Linux-driver.run
-	*if install runs, it will ask you about register kernel module sources
-	YES
-	
-# IF NVIDIA NO VIDEO BECAUSE OF F*** NEW DRIVER
-
-	after fresh install, if you have old nvidia and forgot to use nouveou
-	Ctrl+Alt+F3: Opens TTY 3
-	su
-	password
-	pacman -R nvidia-dkms
-	pacman -R nvidia-utils
-
-	reboot (should enter on graphics interface now using nouveou)
+https://wiki.archlinux.org/title/NVIDIA#
 
 # Nvidia fan control (nfancurve) 
 
