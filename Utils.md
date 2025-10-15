@@ -8,10 +8,11 @@ ARCH UTILS
 	sudo pacman -S pacman-mirrorlist
 	sudo pacman -S archlinux-keyring
 	sudo pacman-key --refresh-keys
-	sudo pacman -Sy
-	sudo pacman -Syu
 
 ## Archlinux update
+
+	sudo pacman -Sy
+	sudo pacman -Syu
 
   	**update only aur packages**
 	yay -Sua --debug
@@ -32,11 +33,11 @@ ARCH UTILS
 	sudo rm -rf /etc/pacman.d/gnupg
 	pacman-key --init 
 	pacman-key --populate
-	pacman -Sy archlinux-keyring
+	pacman -S archlinux-keyring
 
 	And if that fails, do:
 	pacman-key --refresh-keys
-	pacman -Sy archlinux-keyring
+	pacman -S archlinux-keyring
 
 	Hint: If refresh keys takes more than a minute just hit ctrl + c and continue, it likely has still worked.
 
