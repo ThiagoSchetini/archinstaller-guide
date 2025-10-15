@@ -2,30 +2,14 @@ ARCH UTILS
 ====================================================
 
 ## Mirrors Update and Keyring update
+	sudo pacman -S reflector # If not already installed
+    sudo reflector --verbose --latest 5 --sort rate --save /etc/pacman.d/mirrorlist
 
-	sudo pacman -S pacman-contrib
- 
-	**Step 0: Refresh mirrors on a beckup file**
- 	sudo curl -o /etc/pacman.d/mirrorlist.backup https://archlinux.org/mirrorlist/all/
- 
-	**Step 1: Extract and concatenate the mirrorlist entries for US, Paraguay, Brazil, and Worldwide or edit this command to different locations**
-	sudo awk '/^## United States$/{f=1; next}f==0{next}/^$/{exit}{print substr($0, 1);}' /etc/pacman.d/mirrorlist.backup > /tmp/mirrorlist.tmp \
-	&& awk '/^## Paraguay$/{f=1; next}f==0{next}/^$/{exit}{print substr($0, 1);}' /etc/pacman.d/mirrorlist.backup >> /tmp/mirrorlist.tmp \
-	&& awk '/^## Brazil$/{f=1; next}f==0{next}/^$/{exit}{print substr($0, 1);}' /etc/pacman.d/mirrorlist.backup >> /tmp/mirrorlist.tmp \
-	&& awk '/^## Worldwide$/{f=1; next}f==0{next}/^$/{exit}{print substr($0, 1);}' /etc/pacman.d/mirrorlist.backup >> /tmp/mirrorlist.tmp
-	
-	**Step 2: Uncomment all server lines and persist, them update beckup file and change ownership to root**
-	sudo sed -i 's/^#Server/Server/' /tmp/mirrorlist.tmp
-	sudo mv /tmp/mirrorlist.tmp /etc/pacman.d/mirrorlist.backup
-	sudo chown root /etc/pacman.d/mirrorlist.backup
-	sudo chgrp root /etc/pacman.d/mirrorlist.backup
-	
-	**Step 3: Rank -n fastest mirrors. Need 'sudo tee' because root is needed to write:
-	sudo rankmirrors -n 20 /etc/pacman.d/mirrorlist.backup | sudo tee /etc/pacman.d/mirrorlist
-
-	sudo pacman -Syu pacman-mirrorlist
+	sudo pacman -S pacman-mirrorlist
+	sudo pacman -S archlinux-keyring
 	sudo pacman-key --refresh-keys
- 	sudo pacman -Sy archlinux-keyring
+	sudo pacman -Sy
+	sudo pacman -Syu
 
 ## Archlinux update
 
