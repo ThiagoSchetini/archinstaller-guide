@@ -207,8 +207,8 @@ Working, Audio, Images, Video
 	sudo pacman -S ntfs-3g
 
  	sudo pacman -S firefox
-  	pacaur -S google-chrome
-   	pacaur -S freeoffice
+  	sudo pacman -S google-chrome
+   	sudo pacman -S freeoffice
    
 	pacaur -S rhythmbox (audio player)
  	sudo pacman -S spotify-launcher
