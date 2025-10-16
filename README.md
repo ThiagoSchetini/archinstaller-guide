@@ -208,9 +208,9 @@ Working, Audio, Images, Video
 
  	sudo pacman -S firefox
   	sudo pacman -S google-chrome
-   	sudo pacman -S freeoffice
+   	yay -S freeoffice
    
-	pacaur -S rhythmbox (audio player)
+	yay -S rhythmbox (audio player)
  	sudo pacman -S spotify-launcher
 	
  	sudo pacman -S openrgb
