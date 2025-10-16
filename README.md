@@ -151,7 +151,6 @@ Sensors and System Monitor on Tray
   	+ Status Icons
 
  	sudo pacman -S libappindicator-gtk3
-	sudo pacman -S psensor
  	**open and config psensor to start on boot**
  
 	sudo pacman -S bashtop
@@ -200,7 +199,7 @@ JVM & Data Engineering Coding
 	
 	sudo pacman -S intellij-idea-community-edition
  	sudo pacman -S pycharm-community-edition
-  	sudo pacman -S vscode
+  	yay -S visual-studio-code-bin (https://wiki.archlinux.org/title/Visual_Studio_Code)
    	sudo pacman -S dbeaver
 
 Docker 
