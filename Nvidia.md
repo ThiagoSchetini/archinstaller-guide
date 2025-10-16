@@ -4,9 +4,11 @@ https://wiki.archlinux.org/title/NVIDIA#
 
 # Nvidia fan control (nfancurve) 
 
-   	Install nfancurve, if it breaks because "nvidia-settings" use -e:
-    	pacaur -S nfancurve -d
-     	pacaur -S nfancurve -d -e
+   	Install nfancurve
+    	yay -S nfancurve
+
+	if it breaks because "nvidia-settings" use -e:
+     	yay -S nfancurve-d -e
       	*remove the line: "depends=("bash" "nvidia-utils" "nvidia-settings" "procps")"
        :wq
 
