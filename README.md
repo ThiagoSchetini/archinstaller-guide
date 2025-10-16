@@ -140,10 +140,11 @@ Sensors and System Monitor on Tray
 
  	goto: https://extensions.gnome.org/local/
 	+ AppsMenu
- 	+ AstraMonitor
   	+ Status Icons
 
-	sudo pacman -S psensor
+	https://github.com/chinf/psensor
+	./configure;make clean all
+	sudo make install
  	**open and config psensor to start on boot**
  
 	sudo pacman -S bashtop
