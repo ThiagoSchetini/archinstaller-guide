@@ -136,12 +136,14 @@ Sensors and System Monitor on Tray
 	
 	sensors
 
+	sudo pacman -S libappindicator-gtk3
+
  	goto: https://extensions.gnome.org/local/
 	+ AppsMenu
  	+ AstraMonitor
   	+ Status Icons
 
- 	sudo pacman -S libappindicator-gtk3
+	sudo pacman -S psensor
  	**open and config psensor to start on boot**
  
 	sudo pacman -S bashtop
