@@ -111,25 +111,16 @@ GIT:
 	sudo pacman -S git
 	mkdir ~/Repositories
 	
-PACAUR install/refresh:
+YAY install/refresh:
 	
- 	cd ~/Documents (or somewhere to work then delete)
  	check base-devel installed (sudo pacman -S base-devel)
- 
-	git clone  https://aur.archlinux.org/auracle-git.git
-	cd auracle-git/
-	makepkg -si
- 	cd ..
 
-	sudo pacman -S expac jq
-
-	git clone https://aur.archlinux.org/pacaur.git
-	cd pacaur
+	git clone https://aur.archlinux.org/yay.git
+	cd yay
 	makepkg -si
 
 	cd ..
-	rm -r pacaur
-	rm -r auracle-git
+	rm -r yay
 	
 Gnome System Tray (to use apps on background like discord)
 
