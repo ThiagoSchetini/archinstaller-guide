@@ -139,8 +139,10 @@ Sensors and System Monitor on Tray
 	sudo pacman -S libappindicator-gtk3
 
  	goto: https://extensions.gnome.org/local/
+	or: open Extensions
 	+ AppsMenu
   	+ Status Icons
+	+ AppIndicator and KStatusNotifierItem Support
 
 	https://github.com/chinf/psensor
 	./configure;make clean all
