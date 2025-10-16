@@ -51,21 +51,36 @@ Paste the content. Example for MSI TRIO RTX 2080TI with 2 PWM:
 
 ### Enable as a system service
 
+Check your user id:
+
+	id -u
+
 Create the system file first:
 
 	sudo vim /etc/systemd/system/nfancurve.service
 
-Paste the content, confirm usr/bin/nfancurve (which nfancurve):
+Paste the content, confirm usr/bin/nfancurve (which nfancurve), confirm your user id is 1000:
 
 	[Unit]
 	Description=NFanCurve (system-wide)
 	After=multi-user.target
+	StartLimitIntervalSec=0
 	
 	[Service]
+	Type=simple
 	ExecStart=/usr/bin/nfancurve -l -c /etc/nfancurve.conf
 	Restart=always
 	RestartSec=5
 	User=root
+	
+	# Fix environment so nvidia-settings can talk to GPU
+	Environment=DISPLAY=:0
+	Environment=XDG_RUNTIME_DIR=/run/user/1000
+	Environment=DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus
+	
+	# Optional logging (you can check /tmp/nfancurve.log)
+	StandardOutput=append:/tmp/nfancurve.log
+	StandardError=append:/tmp/nfancurve.log
 	
 	[Install]
 	WantedBy=multi-user.target
@@ -78,7 +93,3 @@ System service:
 Check service:
 
 	systemctl status nfancurve.service
-
-Inspect error:
-
-	sudo ExecStart=/usr/bin/nfancurve -l -c /etc/nfancurve.conf >> /var/log/nfancurve.log 2>&1
