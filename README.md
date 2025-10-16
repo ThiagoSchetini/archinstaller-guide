@@ -150,6 +150,9 @@ Sensors and System Monitor on Tray
  	**open and config psensor to start on boot**
  
 	sudo pacman -S bashtop
+	sudo pacman -S nvtop
+	
+	*you can try other extensions and find one to complement.
 	
 Trim auto service check (to SSD's and nvme's):
 
