@@ -2,6 +2,11 @@
 
 https://wiki.archlinux.org/title/NVIDIA#
 
+# NVIDIA sensors
+
+	alias sensors="sensors && nvidia-smi --query-gpu=name,temperature.gpu --format=csv,noheader | awk -F ',' '{printf \"GPU: %s - Temperature: %s°C\\n\", \$1, \$2}'"
+
+
 # NVIDIA fan control (nfancurve) 
 
 ### Install nfancurve
