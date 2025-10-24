@@ -129,7 +129,7 @@ Gnome System Tray (to use apps on background like discord)
 	**now find the Tray Icons Reloaded and install**
 	https://extensions.gnome.org/extension/2890/tray-icons-reloaded/
 
-Sensors and System Monitor on Tray
+Sensors and System Monitor on Tray (Resolve Nvidia driver/tools first)
 
 	sudo sensors-detect
 	**put yes on all of them, no problems**
@@ -149,10 +149,8 @@ Sensors and System Monitor on Tray
 	sudo make install
  	**open and config psensor to start on boot**
  
+	sudo pacman -S glances
 	sudo pacman -S bashtop
-	sudo pacman -S nvtop
-	
-	*you can try other extensions and find one to complement.
 	
 Trim auto service check (to SSD's and nvme's):
 
