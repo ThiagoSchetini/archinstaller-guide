@@ -1,31 +1,33 @@
 ARCH UTILS
 ====================================================
+## Archlinux update
 
-## Mirrors Update and Keyring update
+Mirrors Update:
+
 	sudo pacman -S reflector # If not already installed
-    sudo reflector --verbose --latest 5 --sort rate --save /etc/pacman.d/mirrorlist
+    sudo reflector --verbose --latest 10 --sort rate --save /etc/pacman.d/mirrorlist
 
-	sudo pacman -S pacman-mirrorlist
-	sudo pacman -S archlinux-keyring
+Keyring update:
+
 	sudo pacman-key --refresh-keys
 
-## Archlinux update
+System update incrementaly:
 
 	sudo pacman -Sy
 	sudo pacman -Syu
 
-  	**update only aur packages**
+Update only aur packages:
+
 	yay -Sua --debug
 
- 	**clean pacman + pacaur cache**
+Clean pacman + pacaur cache:
+
 	sudo pacman -Sc
  	yay -Sc
 	
-	**list orphans + remove (needs sudo su)**
+List orphans + remove (needs sudo su):
+
 	sudo pacman -Rns $(pacman -Qdtq)
- 
-	**only remove the orphans**
-	sudo pacman -R aaa bbb ccc ...
  
 ## Keyring (pacman keys) fucked up recovery:
 	
@@ -33,13 +35,13 @@ ARCH UTILS
 	sudo rm -rf /etc/pacman.d/gnupg
 	pacman-key --init 
 	pacman-key --populate
-	pacman -S archlinux-keyring
-
-	And if that fails, do:
 	pacman-key --refresh-keys
+
+If something goes wrong, check if keyring is installed/reinstall:
+
+	pacman -Rns archlinux-keyring
 	pacman -S archlinux-keyring
 
-	Hint: If refresh keys takes more than a minute just hit ctrl + c and continue, it likely has still worked.
 
 ## SSH Key Generation Basic Example
 
