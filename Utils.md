@@ -10,7 +10,7 @@ Mirrors Update:
 Keyring update (faster options first):
 
 	sudo pacman-key --keyserver hkps://keys.openpgp.org --refresh-keys
-	udo pacman-key --keyserver hkps://keyserver.ubuntu.com --refresh-keys
+	sudo pacman-key --keyserver hkps://keyserver.ubuntu.com --refresh-keys
 	sudo pacman-key --refresh-keys
 
 System update incrementaly:
