@@ -5,7 +5,7 @@ ARCH UTILS
 Mirrors Update:
 
 	sudo pacman -S reflector # If not already installed
-    sudo reflector --verbose --latest 10 --sort rate --save /etc/pacman.d/mirrorlist
+	sudo reflector --verbose --country Brazil,Chile,Argentina --age 12 --protocol https --sort rate --latest 20 --save /etc/pacman.d/mirrorlist
 
 Keyring update:
 
