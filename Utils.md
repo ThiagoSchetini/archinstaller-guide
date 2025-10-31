@@ -7,8 +7,10 @@ Mirrors Update:
 	sudo pacman -S reflector # If not already installed
 	sudo reflector --verbose --country Brazil,Chile,Argentina --age 12 --protocol https --sort rate --latest 20 --save /etc/pacman.d/mirrorlist
 
-Keyring update:
+Keyring update (faster options first):
 
+	sudo pacman-key --keyserver hkps://keys.openpgp.org --refresh-keys
+	udo pacman-key --keyserver hkps://keyserver.ubuntu.com --refresh-keys
 	sudo pacman-key --refresh-keys
 
 System update incrementaly:
