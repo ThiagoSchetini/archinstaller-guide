@@ -13,7 +13,7 @@ Keyring update:
 
 System update incrementaly:
 
-	sudo pacman -Sy
+	sudo pacman -Syy
 	sudo pacman -Syu
 
 Update only aur packages:
