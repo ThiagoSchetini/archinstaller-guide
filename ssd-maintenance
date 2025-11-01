@@ -21,6 +21,19 @@ Prepare partitions:
 Format using label (-L myalias):
 
   sudo mkfs.ext4 -L STORAGE /dev/nvme1n1p1
+
+Create permanent mount point:
+
+  sudo mkdir -p /mnt/storage
+
+Get the UUID:
+
+  sudo blkid /dev/nvme1n1p1
+
+Add It to /etc/fstab:
+
+  sudo vim /etc/fstab
+  UUID=5b7e71be-d414-481e-8af4-fcdada97417a  /mnt/storage  ext4  defaults,noatime,user,exec  0 2
   
 ##Label existing system or boot partitions
 
