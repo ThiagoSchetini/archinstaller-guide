@@ -1,0 +1,24 @@
+#SSD Maintenance
+
+##Add SSD as auto mounted unit using a common GPT Ext4 on a UEFI system
+
+Get information on:
+
+  lsblk -f
+
+Start process, 'nvme1m1' is an example:
+
+  sudo umount /dev/nvme1n1*
+  sudo wipefs -a /dev/nvme1n1
+
+Prepare partitions:
+
+  sudo fdisk /dev/nvme1n1
+  - use g (gpt partiton)
+  - them n (new partition, use defaults for full size, just press enter 3 or more times)
+  - finally w to write
+
+Format using label (-L myalias):
+
+  sudo mkfs.ext4 -L storage /dev/nvme1n1p1
+  
