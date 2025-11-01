@@ -43,6 +43,10 @@ Single user workstation permissiosn setup:
 
     sudo chown -R thiago:thiago /mnt/storage
     sudo chmod -R 755 /mnt/storage
+
+Symlink creation, them you open nautilus and drag it to sidebar (to appear as Documents)
+
+    ln -s /mnt/storage ~/Storage
   
 ## Label existing system or boot partitions
 
