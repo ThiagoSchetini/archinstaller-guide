@@ -20,5 +20,14 @@ Prepare partitions:
 
 Format using label (-L myalias):
 
-  sudo mkfs.ext4 -L storage /dev/nvme1n1p1
+  sudo mkfs.ext4 -L STORAGE /dev/nvme1n1p1
   
+##Label existing system or boot partitions
+
+Label a normal Ext4 partition:
+  
+  sudo e2label /dev/nvme0n1p2 MAIN
+
+Label a boot fat32 existing partition (always UPPERCASE! on fat32):
+
+  sudo fatlabel /dev/nvme0n1p1 BOOT
