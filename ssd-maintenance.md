@@ -38,6 +38,11 @@ Add It to /etc/fstab:
 Test:
     
     sudo mount -a
+
+Single user workstation permissiosn setup:
+
+    sudo chown -R thiago:thiago /mnt/storage
+    sudo chmod -R 755 /mnt/storage
   
 ## Label existing system or boot partitions
 
