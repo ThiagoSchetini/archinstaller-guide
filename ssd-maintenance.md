@@ -1,6 +1,6 @@
-#SSD Maintenance
+# SSD Maintenance
 
-##Add SSD as auto mounted unit using a common GPT Ext4 on a UEFI system
+## Add SSD as auto mounted unit using a common GPT Ext4 on a UEFI system
 
 Get information on:
 
@@ -35,7 +35,7 @@ Add It to /etc/fstab:
   sudo vim /etc/fstab
   UUID=5b7e71be-d414-481e-8af4-fcdada97417a  /mnt/storage  ext4  defaults,noatime,user,exec  0 2
   
-##Label existing system or boot partitions
+## Label existing system or boot partitions
 
 Label a normal Ext4 partition:
   
