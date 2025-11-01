@@ -33,7 +33,11 @@ Get the UUID:
 Add It to /etc/fstab:
 
     sudo vim /etc/fstab
-    UUID=5b7e71be-d414-481e-8af4-fcdada97417a  /mnt/storage  ext4  defaults,noatime,user,exec  0 2
+    UUID=5b7e7...your-uuid...417a  /mnt/storage  ext4  defaults,noatime,user,exec  0 2
+    
+Test:
+    
+    sudo mount -a
   
 ## Label existing system or boot partitions
 
