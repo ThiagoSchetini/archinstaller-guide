@@ -1,6 +1,6 @@
 # SSD Maintenance
 
-## Add SSD as auto mounted unit using a common GPT Ext4 on a UEFI system
+## Add SSD as auto mounted unit
 
 Get information on:
 
@@ -30,7 +30,7 @@ Get the UUID:
 
     sudo blkid /dev/nvme1n1p1
 
-Add It to /etc/fstab:
+Add it to /etc/fstab:
 
     sudo vim /etc/fstab
     UUID=5b7e7...your-uuid...417a  /mnt/storage  ext4  defaults,noatime,user,exec  0 2
@@ -39,7 +39,7 @@ Test:
     
     sudo mount -a
 
-Single user workstation permissiosn setup:
+Single user workstation permissions setup:
 
     sudo chown -R thiago:thiago /mnt/storage
     sudo chmod -R 755 /mnt/storage
