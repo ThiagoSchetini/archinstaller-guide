@@ -63,12 +63,17 @@ Before rsync first time on a USB or other external ssd/drive, permissions on the
     sudo chown -R thiago:thiago /run/media/thiago/BECKUPHD
     sudo chmod -R 755 /run/media/thiago/BECKUPHD
 
-To use rsync on a usb or direct (fstab) mounted unit, it will only update differences after first run:
+To use rsync on a direct/USB ssd/hd mounted unit using ext4, it will only update differences after first run:
 
     rsync -aAXHv --delete --progress /mnt/storage/ /run/media/thiago/BECKUPHD
 
+To use rsync on a usb pen drive using FAT32 extfat use:
+
+    rsync -rltDv --delete --progress /mnt/storage/ /run/media/thiago/BECKUPPEN
+
 The flags are important:
 
+    # HD/SSD (ext4)
     -a archive mode (recursive, preserve symlinks, permissions, timestamps, group, owner, devices)
     -A preserve ACLs Access Control Lists (more granular than standard Unix permissions).
     -X preserve extended attributes SELinux labels, system capabilities, or special flags
@@ -78,6 +83,14 @@ The flags are important:
     -h human-readable
     --delete remove files from destination that are missing in source
     --progress show per-file progress
+
+    # Pen drives (extfat)
+    -r recursive
+    -l preserve symlinks
+    -t preserve modification times
+    -D preserve devices/special files (ignored on FAT)
+    -v verbose
+    --progress show progress
 
 ## Encrypt/Decrypt some specific folder
 
@@ -124,3 +137,7 @@ Label it:
 Format it using exfat (better for >4GB files):
 
     sudo mkfs.exfat -n BECKUPPEN /dev/sdb1
+
+Unplug and Plug again to check it mounted, like "/run/media/thiago/BECKUPPEN"
+
+    lsblk -f
