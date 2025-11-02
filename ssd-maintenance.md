@@ -79,3 +79,26 @@ The flags are important:
     --delete remove files from destination that are missing in source
     --progress show per-file progress
 
+## Encrypt/Decrypt some specific folder
+
+Use gocryptfs (userspace)
+
+    sudo pacman -S gocryptfs
+
+Create container directory:
+
+    mkdir -p /mnt/storage/Documents.gocryptfs
+    mkdir -p /home/thiago/Documents   # mount point (empty)
+
+You’ll be asked for a passphrase. Choose a strong one and store it safely
+
+Initialize gocryptfs in the container (it will prompt for passphrase):
+
+    gocryptfs -init /mnt/storage/Documents.gocryptfs
+
+Open/Mount the vault (will ask for passphrase):
+
+    gocryptfs /mnt/storage/Documents.gocryptfs /home/thiago/Documents
+
+
+    
