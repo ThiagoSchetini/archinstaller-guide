@@ -100,5 +100,27 @@ Open/Mount the vault (will ask for passphrase):
 
     gocryptfs /mnt/storage/Documents.gocryptfs /home/thiago/Documents
 
+## Pen drive formating guide
 
+Find the device
+
+    lsblk -f
+
+Wipe it
+
+    sudo umount /dev/sdb1
+    sudo wipefs -a /dev/sdb
+
+Partition MBR (DOS) maximum cross-platform compatibility (Windows/macOS/Linux)
+If your pen drive is < 2 TB, MBR is fine
+
+    sudo parted /dev/sdb -- mklabel msdos
+    sudo parted /dev/sdb -- mkpart primary fat32 1MiB 100% # single FAT32 partition
+
+Label it:
+
+    sudo fatlabel /dev/sdb1 BECKUPPEN
     
+Format it using exfat (better for >4GB files):
+
+    sudo mkfs.exfat -n BECKUPPEN /dev/sdb1
