@@ -13,10 +13,8 @@ Start process, 'nvme1m1' is an example:
 
 Prepare partitions:
 
-    sudo fdisk /dev/nvme1n1
-    - use g (gpt partiton)
-    - them n (new partition, use defaults for full size, just press enter 3 or more times)
-    - finally w to write
+    sudo parted /dev/nvme1n1 -- mklabel gpt
+    sudo parted /dev/nvme1n1 -- mkpart primary ext4 1MiB 100%
 
 Format using label (-L myalias):
 
