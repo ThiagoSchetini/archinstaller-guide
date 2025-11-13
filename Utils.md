@@ -22,15 +22,27 @@ Update only aur packages:
 
 	yay -Sua --debug
 
-Clean pacman + pacaur cache:
+## Archlinux cleanup
 
-	sudo pacman -Sc
- 	yay -Sc
-	
-List orphans + remove (needs sudo su):
+Orphans remove:
 
 	sudo pacman -Rns $(pacman -Qdtq)
- 
+	yay -Yc
+
+Clean pacman + pacaur aggressive cache clean:
+
+	sudo paccache -rk1
+ 	yay -Scc
+
+Clean journal logs (older than 7 days)
+
+	sudo journalctl --vacuum-time=7d
+
+Clean system temporary files + user cache safely
+	
+	sudo rm -rf /tmp/*
+	rm -rf ~/.cache/*
+
 ## Keyring (pacman keys) fucked up recovery:
 	
 	killall gpg-agent
