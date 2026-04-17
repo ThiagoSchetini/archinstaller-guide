@@ -7,11 +7,12 @@ Mirrors Update:
 	sudo pacman -S reflector # If not already installed
 	sudo reflector --verbose --country Brazil,Chile,Argentina --age 12 --protocol https --sort rate --latest 20 --save /etc/pacman.d/mirrorlist
 
-Keyring update (faster option first):
+Keyring update:
 
-	sudo pacman-key --keyserver hkps://keyserver.ubuntu.com --refresh-keys
-	sudo pacman-key --keyserver hkps://keys.openpgp.org --refresh-keys
-	sudo pacman-key --refresh-keys
+	sudo rm -rf /etc/pacman.d/gnupg
+	sudo pacman-key --init
+	sudo pacman-key --populate archlinux
+	sudo pacman -Sy archlinux-keyring
 
 System update incrementaly:
 
@@ -42,14 +43,6 @@ Clean system temporary files + user cache safely
 	
 	sudo rm -rf /tmp/*
 	rm -rf ~/.cache/*
-
-## Keyring (pacman keys) fucked up recovery:
-	
-	killall gpg-agent
-	sudo rm -rf /etc/pacman.d/gnupg
-	pacman-key --init 
-	pacman-key --populate
-	pacman-key --refresh-keys
 
 If something goes wrong, check if keyring is installed/reinstall:
 
