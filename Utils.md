@@ -19,9 +19,9 @@ System update incrementaly:
 	sudo pacman -Syy
 	sudo pacman -Syu
 
-Update only aur packages:
+Update only aur packages, easy mode:
 
-	yay -Sua --debug
+	yay -Sua --devel --timeupdate --answerclean None --answerdiff None --answeredit None
 
 ## Archlinux cleanup
 
