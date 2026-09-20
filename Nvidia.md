@@ -28,8 +28,8 @@ Open the conf file:
 
 Paste the content. Example for MSI TRIO RTX 2080TI with 2 PWM: 
 
-	min_t="50"
-	min_t2="50"
+	min_t="0"
+	min_t2="0"
 	
 	sleep_time="3"
 	
