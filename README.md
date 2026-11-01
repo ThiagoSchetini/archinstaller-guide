@@ -229,8 +229,8 @@ Microphone Setup (P2 TRS)
 	alsamixer
 	F6 (select)
 	F4 (Capture)
-	Set Capture Volume (40 to 60%)
-	Set Rear Mic Boost (0 dB, causes too much noise the boost)
+	Set Capture Volume (100%)
+	Set Rear Mic Boost (53+, level2)
 	Optionally, adjust all volumes to 85%, maintain Input Source 0 to Rear, Input 1 to Front.
 	
 	sudo alsactl store (if reboot without save, does not persist)
@@ -238,6 +238,9 @@ Microphone Setup (P2 TRS)
 	sudo pacman -S easyeffects lsp-plugins-lv2 (RNNoise neural network mechanical keyboard an noise removal)
 
 	Open Easy Effects, add Noise Reduction on Input
+
+	cd Downloads
+	pw-record testing.wav (speak with the mic on the desired position and check if it's good, CTRL+C to stop and open in Rythmbox)
 
 CLEAN
 
