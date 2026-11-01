@@ -229,10 +229,12 @@ Microphone Setup (P2 TRS)
 	alsamixer
 	F6 (select)
 	F4 (Capture)
-	Capture Volume (40 to 60%)
-	Rear Mic Boost (0 dB, causes too much noise the boost)
+	Set Capture Volume (40 to 60%)
+	Set Rear Mic Boost (0 dB, causes too much noise the boost)
 	
-	
+	sudo alsactl store (if reboot without save, does not persist)
+
+	sudo pacman -S easyeffects lsp-plugins-lv2 (RNNoise neural network mechanical keyboard an noise removal)
 
 CLEAN
 
