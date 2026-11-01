@@ -222,6 +222,18 @@ Working, Audio, Images, Video
  	sudo pacman -S openrgb
 	sudo pacman -S steam
 
+Microphone Setup (P2 TRS)
+
+	sudo pacman -S alsa-utils
+
+	alsamixer
+	F6 (select)
+	F4 (Capture)
+	Capture Volume (40 to 60%)
+	Rear Mic Boost (0 dB, causes too much noise the boost)
+	
+	
+
 CLEAN
 
 	pacman -Qe (search for not used installed default dependencies carefully)
