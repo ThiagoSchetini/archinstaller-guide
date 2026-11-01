@@ -231,6 +231,7 @@ Microphone Setup (P2 TRS)
 	F4 (Capture)
 	Set Capture Volume (40 to 60%)
 	Set Rear Mic Boost (0 dB, causes too much noise the boost)
+	Optionally, adjust all volumes to 85%, maintain Input Source 0 to Rear, Input 1 to Front.
 	
 	sudo alsactl store (if reboot without save, does not persist)
 
