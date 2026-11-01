@@ -237,6 +237,8 @@ Microphone Setup (P2 TRS)
 
 	sudo pacman -S easyeffects lsp-plugins-lv2 (RNNoise neural network mechanical keyboard an noise removal)
 
+	Open Easy Effects, add Noise Reduction on Input
+
 CLEAN
 
 	pacman -Qe (search for not used installed default dependencies carefully)
