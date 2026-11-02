@@ -222,9 +222,11 @@ Working, Audio, Images, Video
  	sudo pacman -S openrgb
 	sudo pacman -S steam
 
-Microphone Setup (P2 TRS)
+## Microphone Setup (P2 TRS)
 
 	sudo pacman -S alsa-utils
+
+### Decouple wireplumber from interfering on alsa
 
 	mkdir -p ~/.config/wireplumber/wireplumber.conf.d/
 	vim -p ~/.config/wireplumber/wireplumber.conf.d/51-software-volume.conf
@@ -243,9 +245,12 @@ Microphone Setup (P2 TRS)
 			}
 		}
 	]
-	
-	systemctl --user restart wireplumber
 
+
+### Clean the wireplumber (cache) and restart
+
+	rm -rf ~/.local/state/wireplumber/*
+	systemctl --user restart wireplumber
 
 	alsamixer
 	F6 (select)
@@ -254,7 +259,13 @@ Microphone Setup (P2 TRS)
 	Set Rear/Front Mic Boost (53+, level2)
 	Adjust all volumes to 85%, maintain Input Source 0 to Rear, Input 1 to Front.
 	
-	sudo alsactl store (if reboot without save, does not persist)
+	sudo alsactl store (if reboot without save, does not persist, do it every time you update!)
+
+
+### Now we need to create a restore service
+
+	
+### Time for easy effects and Neural Model acting on noise removal
 
 	sudo pacman -S easyeffects lsp-plugins-lv2 (RNNoise neural network mechanical keyboard an noise removal)
 
