@@ -299,8 +299,18 @@ Settings/Sound/Input:
 
 Open Easy Effects
 
-	Add Noise Reduction on Input
-	ON Preferences enable system startup service
+ON INPUT:
+	
+	Add Effect: Equalizer 
+	Equalizer: Output set to 15dB
+
+	Add Effect: Noise Reduction
+	use defaults
+
+ON Preferences:
+
+	enable system startup service
+	
 
 Test Microphone:
 
