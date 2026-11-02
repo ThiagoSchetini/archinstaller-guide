@@ -226,12 +226,33 @@ Microphone Setup (P2 TRS)
 
 	sudo pacman -S alsa-utils
 
+	mkdir -p ~/.config/wireplumber/wireplumber.conf.d/
+	vim -p ~/.config/wireplumber/wireplumber.conf.d/51-software-volume.conf
+
+	monitor.alsa.rules = [
+		{
+			matches = [
+				{
+					device.name = "~alsa_card.*"
+				}
+			]
+			actions = {
+				update-props = {
+					api.alsa.soft-mixer = true
+				}
+			}
+		}
+	]
+	
+	systemctl --user restart wireplumber
+
+
 	alsamixer
 	F6 (select)
-	F4 (Capture)
+	F5 (All)
 	Set Capture Volume (100%)
-	Set Rear Mic Boost (53+, level2)
-	Optionally, adjust all volumes to 85%, maintain Input Source 0 to Rear, Input 1 to Front.
+	Set Rear/Front Mic Boost (53+, level2)
+	Adjust all volumes to 85%, maintain Input Source 0 to Rear, Input 1 to Front.
 	
 	sudo alsactl store (if reboot without save, does not persist)
 
