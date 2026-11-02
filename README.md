@@ -226,7 +226,7 @@ Working, Audio, Images, Video
 
 	sudo pacman -S alsa-utils
 
-### Decouple wireplumber from interfering on alsa
+### [DELETE] Decouple wireplumber from interfering on alsa
 
 	mkdir -p ~/.config/wireplumber/wireplumber.conf.d/
 	vim -p ~/.config/wireplumber/wireplumber.conf.d/51-software-volume.conf
@@ -285,7 +285,7 @@ On terminal, to persist after reboot we need:
 	
 	sudo alsactl store (if reboot without save, does not persist, do it every time you update!)
 
-### Create a service to apply/force alsactl store conf on ALSA after boot
+### [DELETE] Create a service to apply/force alsactl store conf on ALSA after boot
 
 	sudo vim /etc/systemd/system/alsa-boot-fix.service
 
