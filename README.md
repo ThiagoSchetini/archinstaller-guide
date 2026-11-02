@@ -252,17 +252,32 @@ Working, Audio, Images, Video
 	rm -rf ~/.local/state/wireplumber/*
 	systemctl --user restart wireplumber
 
-### Configure the Hardware, Most important Part:
+### Configure the Hardware, the ZERO photo of your desired config. Most important Part:
 
 	alsamixer
-	F6 (select)
-	F5 (All)
-	Set Capture Volume (100%)
-	Set Rear/Front Mic Boost (zero, since the ALSA hardware will always force to zero, we boost on easy effects later)
-	Adjust all volumes to 85%, maintain Input Source 0 to Rear, Input 1 to Front.
+	
+F6 (select your motherboard audio), them F5 (All):
+
+	Not Muted (press M to unmute)
+	Master = 85
+	Headphone = 85
+	PCM = 86
+	Front = 85
+	Capture = 100 (MAX)
+	Front Mic Boost = 0
+	Rear Mic Boost = 0
+	Line Boost = 0
+
+	EVERYTHING ELSE, MUTED AND ZERO (MM):
+	Front Mic + Rear Mic = 0 + (MM) (muted, it's return not capture)
+	LFE, Surround, SPDIF, etc.. = 0 + (MM)
+	
+	Auto-Mute = Enabled
+	Input Source 0 = Rear
+	Input Source 1 = Front
+	Loopback = Disabled
 	
 	sudo alsactl store (if reboot without save, does not persist, do it every time you update!)
-
 
 ### Create a service to apply/force alsactl store conf on ALSA after boot
 
@@ -311,7 +326,7 @@ ON Preferences:
 	disable Process all inputs streams
 	disable Process all output stream
 
-### USB Headsets:
+### USB Headsets, how to deal with manually?:
 
 Logitech H390 Example, plug it and:
 
