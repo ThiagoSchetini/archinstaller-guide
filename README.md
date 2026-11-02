@@ -304,7 +304,19 @@ ON Preferences:
 
 	enable system startup service
 
-TODO disable that thing
+### Add Extra Speakers, Headphones, Headsets:
+
+Logitech H390 Example, plug it and:
+
+	alsamixer
+	
+	F6 (select)
+
+	Set Headphone VOlume (70%)
+	Set Capture
+
+	sudo alsactl store
+	
 
 ### System Defaults
 
