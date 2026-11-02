@@ -256,7 +256,7 @@ Working, Audio, Images, Video
 	F6 (select)
 	F5 (All)
 	Set Capture Volume (100%)
-	Set Rear/Front Mic Boost (53+, level2)
+	Set Rear/Front Mic Boost (zero, since the ALSA hardware will always force to zero, we boost on easy effects later)
 	Adjust all volumes to 85%, maintain Input Source 0 to Rear, Input 1 to Front.
 	
 	sudo alsactl store (if reboot without save, does not persist, do it every time you update!)
@@ -285,17 +285,27 @@ Working, Audio, Images, Video
 	sudo systemctl enable alsa-boot-fix.service
 
 	reboot
+
+### RNN Noise removal setup and System Defaults
+
+	sudo pacman -S easyeffects lsp-plugins-lv2
+
+Settings/Sound/Input:
+
+	Input Device: Easy Effects Source
+	Input Volume: 100%
 	
 ### Time for easy effects and Neural Model acting on noise removal
 
-	sudo pacman -S easyeffects lsp-plugins-lv2 (RNNoise neural network mechanical keyboard an noise removal)
+Open Easy Effects
 
-	Open Easy Effects
 	Add Noise Reduction on Input
 	ON Preferences enable system startup service
 
+Test Microphone:
+
 	cd Downloads
-	pw-record testing.wav (speak with the mic on the desired position and check if it's good, CTRL+C to stop and open in Rythmbox)
+	pw-record testing.wav
 
 CLEAN
 
