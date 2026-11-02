@@ -272,10 +272,16 @@ F6 (select your motherboard audio), them F5 (All):
 	Front Mic + Rear Mic = 0 + (MM) (muted, it's return not capture)
 	LFE, Surround, SPDIF, etc.. = 0 + (MM)
 	
-	Auto-Mute = Enabled
+	Auto-Mute = Disabled
 	Input Source 0 = Rear
 	Input Source 1 = Front
 	Loopback = Disabled
+
+	Exit
+
+On terminal, to persist after reboot we need:
+
+	sudo alsactl store -f /etc/asound-perfect.state
 	
 	sudo alsactl store (if reboot without save, does not persist, do it every time you update!)
 
@@ -293,7 +299,7 @@ F6 (select your motherboard audio), them F5 (All):
 	[Service]
 	Type=oneshot
 	ExecStart=/usr/bin/sleep 5
-	ExecStart=/usr/bin/alsactl restore
+	ExecStart=/usr/bin/alsactl restore -f /etc/asound-perfect.state
 
 	[Install]
 	WantedBy=multi-user.target
