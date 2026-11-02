@@ -247,10 +247,12 @@ Working, Audio, Images, Video
 	]
 
 
-### Clean the wireplumber (cache) and restart
+### Clean the wireplumber (cache)
 
 	rm -rf ~/.local/state/wireplumber/*
 	systemctl --user restart wireplumber
+
+### Configure the Hardware, Most important Part:
 
 	alsamixer
 	F6 (select)
@@ -302,9 +304,14 @@ ON INPUT:
 
 ON Preferences:
 
+	/Background Services
 	enable system startup service
 
-### Add Extra Speakers, Headphones, Headsets:
+	/Audio
+	disable Process all inputs streams
+	disable Process all output stream
+
+### USB Headsets:
 
 Logitech H390 Example, plug it and:
 
@@ -313,7 +320,7 @@ Logitech H390 Example, plug it and:
 	F6 (select)
 
 	Set Headphone Volume (70%)
-	Set Capture to 0 (zero, because of the 15db Boost at Easy Effects)
+	Set Capture to 100% or MAX if any
 
 	sudo alsactl store
 	
