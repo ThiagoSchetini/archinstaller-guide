@@ -262,8 +262,29 @@ Working, Audio, Images, Video
 	sudo alsactl store (if reboot without save, does not persist, do it every time you update!)
 
 
-### Now we need to create a restore service
+### Create a service to apply/force alsactl store conf on ALSA after boot
 
+	sudo vim /etc/systemd/system/alsa-boot-fix.service
+
+	"""
+	Ini,TOML
+
+	[Unit]
+	Description=Force ALSA restore after WirePlumber
+	After=multi-user.target
+
+	[Service]
+	Type=oneshot
+	ExecStart=/usr/bin/sleep 5
+	ExecStart=/usr/bin/alsactl restore
+
+	[Install]
+	WantedBy=multi-user.target
+	"""
+
+	sudo systemctl enable alsa-boot-fix.service
+
+	reboot
 	
 ### Time for easy effects and Neural Model acting on noise removal
 
