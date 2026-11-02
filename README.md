@@ -237,7 +237,9 @@ Microphone Setup (P2 TRS)
 
 	sudo pacman -S easyeffects lsp-plugins-lv2 (RNNoise neural network mechanical keyboard an noise removal)
 
-	Open Easy Effects, add Noise Reduction on Input
+	Open Easy Effects
+	Add Noise Reduction on Input
+	ON Preferences enable system startup service
 
 	cd Downloads
 	pw-record testing.wav (speak with the mic on the desired position and check if it's good, CTRL+C to stop and open in Rythmbox)
