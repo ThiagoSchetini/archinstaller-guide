@@ -286,18 +286,11 @@ Working, Audio, Images, Video
 
 	reboot
 
-### RNN Noise removal setup and System Defaults
+### RNN Noise removal setup
 
 	sudo pacman -S easyeffects lsp-plugins-lv2
 
-Settings/Sound/Input:
-
-	Input Device: Easy Effects Source
-	Input Volume: 100%
-	
-### Time for easy effects and Neural Model acting on noise removal
-
-Open Easy Effects
+Open Easy Effects (Neural Model acting on noise removal and Boosting)
 
 ON INPUT:
 	
@@ -310,8 +303,29 @@ ON INPUT:
 ON Preferences:
 
 	enable system startup service
-	
 
+TODO disable that thing
+
+### System Defaults
+
+Settings/Sound/Input:
+
+	Input Device: Easy Effects Source
+	Input Volume: 100%
+
+	Output Device: James DSP Sink
+	Input Volume: 100%
+
+Terminal:
+
+	wpctl status 
+
+	Find James DSP Sink number on Sinks (ex: 68)
+	Find easy effects source on FIlters (ex: 75)
+
+	wpctl set-default 68
+	wpctl set-default 75
+	
 Test Microphone:
 
 	cd Downloads
