@@ -290,8 +290,6 @@ On terminal, to persist after reboot we need:
 	sudo vim /etc/systemd/system/alsa-boot-fix.service
 
 	"""
-	Ini,TOML
-
 	[Unit]
 	Description=Force ALSA restore after WirePlumber
 	After=multi-user.target
