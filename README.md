@@ -312,8 +312,8 @@ Logitech H390 Example, plug it and:
 	
 	F6 (select)
 
-	Set Headphone VOlume (70%)
-	Set Capture
+	Set Headphone Volume (70%)
+	Set Capture to 0 (zero, because of the 15db Boost at Easy Effects)
 
 	sudo alsactl store
 	
