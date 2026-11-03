@@ -226,87 +226,6 @@ Working, Audio, Images, Video
 
 	sudo pacman -S alsa-utils
 
-### [DELETE] Decouple wireplumber from interfering on alsa
-
-	mkdir -p ~/.config/wireplumber/wireplumber.conf.d/
-	vim -p ~/.config/wireplumber/wireplumber.conf.d/51-software-volume.conf
-
-	monitor.alsa.rules = [
-		{
-			matches = [
-				{
-					device.name = "~alsa_card.*"
-				}
-			]
-			actions = {
-				update-props = {
-					api.alsa.soft-mixer = true
-				}
-			}
-		}
-	]
-
-
-### Clean the wireplumber (cache)
-
-	rm -rf ~/.local/state/wireplumber/*
-	systemctl --user restart wireplumber
-
-### Configure the Hardware, the ZERO photo of your desired config. Most important Part:
-
-	alsamixer
-	
-F6 (select your motherboard audio), them F5 (All):
-
-	Not Muted (press M to unmute)
-	Master = 85
-	Headphone = 85
-	PCM = 86
-	Front = 85
-	Capture = 100 (MAX)
-	Front Mic Boost = 0
-	Rear Mic Boost = 0
-	Line Boost = 0
-
-	EVERYTHING ELSE, MUTED AND ZERO (MM):
-	Front Mic + Rear Mic = 0 + (MM) (muted, it's return not capture)
-	LFE, Surround, SPDIF, etc.. = 0 + (MM)
-	
-	Auto-Mute = Disabled
-	Input Source 0 = Rear
-	Input Source 1 = Front
-	Loopback = Disabled
-
-	Exit
-
-On terminal, to persist after reboot we need:
-
-	sudo alsactl store -f /etc/asound-perfect.state
-	
-	sudo alsactl store (if reboot without save, does not persist, do it every time you update!)
-
-### [DELETE] Create a service to apply/force alsactl store conf on ALSA after boot
-
-	sudo vim /etc/systemd/system/alsa-boot-fix.service
-
-	"""
-	[Unit]
-	Description=Force ALSA restore after WirePlumber
-	After=multi-user.target
-
-	[Service]
-	Type=oneshot
-	ExecStart=/usr/bin/sleep 5
-	ExecStart=/usr/bin/alsactl restore -f /etc/asound-perfect.state
-
-	[Install]
-	WantedBy=multi-user.target
-	"""
-
-	sudo systemctl enable alsa-boot-fix.service
-
-	reboot
-
 ### RNN Noise removal setup
 
 	sudo pacman -S easyeffects lsp-plugins-lv2
@@ -314,57 +233,44 @@ On terminal, to persist after reboot we need:
 Open Easy Effects (Neural Model acting on noise removal and Boosting)
 
 ON INPUT:
-	
-	Add Effect: Equalizer 
-	Equalizer: Output set to 15dB
 
-	Add Effect: Noise Reduction
-	use defaults
+	Add Effect: Noise Reduction (use defaults do not change anything)
+
+ON OUTPUT:
+
+	Add Effect: Equalizer
+	TODO: add APO or CSV curves.
 
 ON Preferences:
 
 	/Background Services
 	enable system startup service
 
-	/Audio
-	disable Process all inputs streams
-	disable Process all output stream
+### Control Microphone Boost
 
-### USB Headsets, how to deal with manually?:
+	sudo pacman -S pavucontrol
 
-Logitech H390 Example, plug it and:
+Time to plug Plug Rear + Front Microphones. Plug USB Headset, plug your audio, plug everything is possible.
 
-	alsamixer
+Open Volume Control (pavucontrol installed)
+
+On Input Devices:
+
+	Easy Effects will be forced to Set as Default, do not waste time with this.
+
+	Put both Analog (p2) Front and Rear to 70% (-10dB +-)
+
+	Unclick the Easy Effects as Set as Default.
+
+	Plug and unplug many many times and "train" correctly until works as expected
+
+On Output Devices:
+
+	Set All to 80%, except Easy Effects and Headphones. On Headphones start with 25, 30%.
+
+	"Train" it plug and unplug. Easy Effects Sink will be forced to Default, do not waste time with this.
 	
-	F6 (select)
-
-	Set Headphone Volume (70%)
-	Set Capture to 100% or MAX if any
-
-	sudo alsactl store
-	
-
-### System Defaults
-
-Settings/Sound/Input:
-
-	Input Device: Easy Effects Source
-	Input Volume: 100%
-
-	Output Device: James DSP Sink
-	Input Volume: 100%
-
-Terminal:
-
-	wpctl status 
-
-	Find James DSP Sink number on Sinks (ex: 68)
-	Find easy effects source on FIlters (ex: 75)
-
-	wpctl set-default 68
-	wpctl set-default 75
-	
-Test Microphone:
+### Test Microphones:
 
 	cd Downloads
 	pw-record testing.wav
