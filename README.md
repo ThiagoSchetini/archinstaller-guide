@@ -163,12 +163,6 @@ Trim auto service check (to SSD's and nvme's):
 	sudo systemctl enable fstrim.timer
 	
 	reboot
-	
-DSP LADSPA Plugin (for audio correction)
-
-	pacaur -S jamesdsp
-
-	**Then, download some corrections files like: http://noaudiophile.com/Logitech_z623/Logitech_z623.txt**
 		
 JVM & Data Engineering Coding
 
@@ -222,11 +216,11 @@ Working, Audio, Images, Video
  	sudo pacman -S openrgb
 	sudo pacman -S steam
 
-## Microphone Setup (P2 TRS)
+## Microphone And Sound Setup
 
 	sudo pacman -S alsa-utils
 
-### RNN Noise removal setup
+### RNN Noise removal setup and pro audio DSP
 
 	sudo pacman -S easyeffects lsp-plugins-lv2
 
@@ -239,7 +233,10 @@ ON INPUT:
 ON OUTPUT:
 
 	Add Effect: Equalizer
-	TODO: add APO or CSV curves.
+	Import APO: import the .txt sound files 
+	On Presets/Local save the presets.
+	On Presets/Autoload create automation (Headphones, Back output)
+	* you need to plug the device to create the autoload profile.
 
 ON Preferences:
 
