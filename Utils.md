@@ -184,11 +184,20 @@ Reboot and then:
 
 	sudo modprobe i2c-dev
 
-openrgb:
+### openrgb:
+
+Install:
 
 	sudo pacman -S openrgb
 
- Example of terminal usage of openrgb after setting up a device:
+Prepare on /Settings:
+
+	enable load at startup
+	enable load minimized
+	create a profile with a base color, name it, apply to all devices 
+	save, restart.
+
+ Example of terminal usage on terminal of openrgb after setting up a device:
  
  	openrgb --device 0 --mode Direct --brightness 70 -c FF0000 -v
 
